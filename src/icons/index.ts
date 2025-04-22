@@ -56,6 +56,10 @@ import { ReactComponent as ErrorHexaIcon } from "./info-hexa.svg?react";
 
 import { ReactComponent as StarHexaIcon } from "./star-hexa.svg?react";
 
+
+import { ReactComponent as EditIcon } from "./edit.svg?react";
+import { ReactComponent as DeleteIcon } from "./delete.svg?react";
+
 export {
   ErrorHexaIcon,
   AlertHexaIcon,
@@ -111,5 +115,7 @@ export {
   HorizontaLDots,
   ChevronUpIcon,
   ChatIcon,
-  StarHexaIcon
+  StarHexaIcon,
+  EditIcon,
+  DeleteIcon
 };

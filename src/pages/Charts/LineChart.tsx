@@ -7,8 +7,8 @@ export default function LineChart() {
   return (
     <>
       <PageMeta
-        title="React.js Chart Dashboard | Mahad Test Dashboard"
-        description="This is React.js Chart Dashboard page - Mahad Test Dashboard"
+        title="React.js Chart Dashboard | Test Dashboard"
+        description="This is React.js Chart Dashboard page - Test Dashboard"
       />
       <PageBreadcrumb pageTitle="Line Chart" />
       <div className="space-y-6">

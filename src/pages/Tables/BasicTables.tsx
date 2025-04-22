@@ -7,8 +7,8 @@ export default function BasicTables() {
   return (
     <>
       <PageMeta
-        title="React.js Basic Tables Dashboard | Mahad Test Dashboard"
-        description="This is React.js Basic Tables Dashboard page - Mahad Test Dashboard"
+        title="Test Dashboard"
+        description="Test Dashboard"
       />
       <PageBreadcrumb pageTitle="Basic Tables" />
       <div className="space-y-6">

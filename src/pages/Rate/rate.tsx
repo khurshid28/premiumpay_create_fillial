@@ -7,8 +7,8 @@ export default function RatePage() {
   return (
     <>
       <PageMeta
-        title="React.js Basic Tables Dashboard | Mahad Test Dashboard"
-        description="This is React.js Basic Tables Dashboard page - Mahad Test Dashboard"
+        title="Test Dashboard"
+        description="Test Dashboard"
       />
       <PageBreadcrumb pageTitle="Rates" />
       <div className="space-y-6">
