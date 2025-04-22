@@ -1,19 +1,19 @@
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import PageMeta from "../../components/common/PageMeta";
-import BasicTableOne from "../../components/tables/BasicTables/BasicTableOne";
+import RatesTable from "../../components/tables/rate/RatesTable";
 
-export default function BasicTables() {
+export default function RatePage() {
   return (
     <>
       <PageMeta
         title="React.js Basic Tables Dashboard | Mahad Test Dashboard"
         description="This is React.js Basic Tables Dashboard page - Mahad Test Dashboard"
       />
-      <PageBreadcrumb pageTitle="Basic Tables" />
+      <PageBreadcrumb pageTitle="Rates" />
       <div className="space-y-6">
-        <ComponentCard title="Basic Table 1">
-          <BasicTableOne />
+        <ComponentCard title="Rates Table">
+          <RatesTable />
         </ComponentCard>
       </div>
     </>

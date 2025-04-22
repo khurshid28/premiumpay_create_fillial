@@ -18,6 +18,7 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
+import RatePage from "./pages/Rate/rate";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
             <Route index path="/" element={<Home />} />
+            <Route index path="/rate" element={<RatePage />} />
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
@@ -46,7 +48,7 @@ export default function App() {
             <Route path="/badge" element={<Badges />} />
             <Route path="/buttons" element={<Buttons />} />
             <Route path="/images" element={<Images />} />
-            <Route path="/videos" element={<Videos />} />
+            {/* <Route path="/videos" element={<Videos />} /> */}
 
             {/* Charts */}
             <Route path="/line-chart" element={<LineChart />} />
@@ -55,7 +57,7 @@ export default function App() {
 
           {/* Auth Layout */}
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          {/* <Route path="/signup" element={<SignUp />} /> */}
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />

@@ -1,5 +1,5 @@
 {
-  "name": "tailadmin-react",
+  "name": "mahad-test-web",
   "private": true,
   "version": "2.0.2",
   "type": "module",
@@ -21,6 +21,7 @@
     "apexcharts": "^4.1.0",
     "clsx": "^2.1.1",
     "flatpickr": "^4.6.13",
+    "mahad-test-web": "file:",
     "react": "^19.0.0",
     "react-apexcharts": "^1.7.0",
     "react-dnd": "^16.0.1",
