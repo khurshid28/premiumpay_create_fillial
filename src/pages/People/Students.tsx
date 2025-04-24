@@ -1,7 +1,6 @@
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import PageMeta from "../../components/common/PageMeta";
-import TeachersTable from "../../components/tables/people/teachersTable";
 import { BoxIcon, PlusIcon } from "../../icons";
 import Button from "../../components/ui/button/Button";
 import { useModal } from "../../hooks/useModal";
@@ -9,14 +8,17 @@ import Label from "../../components/form/Label";
 import Input from "../../components/form/input/InputField";
 import { Modal } from "../../components/ui/modal";
 import { useState } from "react";
+import StudentsTable from "../../components/tables/people/studentsTable";
+import Select from "../../components/form/Select";
 import FileInput from "../../components/form/input/FileInput";
-export interface Teacher {
+export interface Student {
   firstName: string;
   lastName: string;
   phone: string;
   password: string;
+  group_id?: string
 }
-export default function TeachersPage() {
+export default function StudentsPage() {
   const { isOpen, openModal, closeModal } = useModal();
   const handleAdding = () => {
     // Handle save logic here
@@ -24,35 +26,48 @@ export default function TeachersPage() {
     console.log("handleAdding...");
 
     closeModal();
-    setTeacher(emptyTeacher);
+    setStudent(emptyStudent);
   };
-  let emptyTeacher: Teacher = {
+  let emptyStudent: Student = {
     firstName: "",
     lastName: "",
     phone: "901234567",
     password: "12345678",
+     
   };
-  let [teacher, setTeacher] = useState<Teacher>(emptyTeacher);
+
+  
+  let [Student, setStudent] = useState<Student>(emptyStudent);
+
+  const options = [
+    { value: "Group 1", label: "Group 1" },
+    { value: "Group 2", label: "Group 2" },
+    { value: "Group 3", label: "Group 3" },
+  ];
+  let [optionValue, setoptionValue] = useState("");
+
+  const handleSelectChange = (value: string) => {
+    setoptionValue(value);
+  };
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       console.log("Selected file:", file.name);
     }
   };
-
   return (
     <>
       <PageMeta
-        title="Teachers | Test Dashboard"
+        title="Students | Test Dashboard"
         description="Test Dashboard"
       />
-      <PageBreadcrumb pageTitle="Teachers" />
+      <PageBreadcrumb pageTitle="Students" />
    
        <div className="space-y-6 ">
        
        
          <ComponentCard
-          title="Teachers Table"
+          title="Students Table"
           action={
             <>
               <Button
@@ -60,26 +75,26 @@ export default function TeachersPage() {
                 variant="primary"
                 startIcon={<PlusIcon className="size-5 fill-white" />}
                 onClick={()=>{
-                  setTeacher(emptyTeacher)
+                  setStudent(emptyStudent)
                   openModal()
                 }}
               >
-                Add teacher
+                Add Student
               </Button>
             </>
           }
         >
-          <TeachersTable />
+          <StudentsTable />
         </ComponentCard>
       </div>
       <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] m-4">
         <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">
           <div className="px-2 pr-14">
             <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-              Add teacher
+              Add Student
             </h4>
             <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-              Create new teacher with full details.
+              Create new Student with full details.
             </p>
           </div>
           <form className="flex flex-col">
@@ -89,10 +104,10 @@ export default function TeachersPage() {
                   <Label>Firstname</Label>
                   <Input
                     type="text"
-                    value={teacher.firstName}
+                    value={Student.firstName}
                     onChange={(e) =>
-                      setTeacher({
-                        ...teacher,
+                      setStudent({
+                        ...Student,
                         firstName: e.target.value,
                       })
                     }
@@ -103,10 +118,10 @@ export default function TeachersPage() {
                   <Label>Lastname</Label>
                   <Input
                     type="text"
-                    value={teacher.lastName}
+                    value={Student.lastName}
                     onChange={(e) =>
-                      setTeacher({
-                        ...teacher,
+                      setStudent({
+                        ...Student,
                         lastName: e.target.value,
                       })
                     }
@@ -117,10 +132,10 @@ export default function TeachersPage() {
                   <Label>Phonenumber</Label>
                   <Input
                     type="text"
-                    value={teacher.phone}
+                    value={Student.phone}
                     onChange={(e) =>
-                      setTeacher({
-                        ...teacher,
+                      setStudent({
+                        ...Student,
                         phone: e.target.value,
                       })
                     }
@@ -131,22 +146,33 @@ export default function TeachersPage() {
                   <Label>Password</Label>
                   <Input
                     type="text"
-                    value={teacher.password}
+                    value={Student.password}
                     onChange={(e) =>
-                      setTeacher({
-                        ...teacher,
+                      setStudent({
+                        ...Student,
                         password: e.target.value,
                       })
                     }
                   />
                 </div>
+
+                
                 <div>
-  <Label>Image</Label>
-  <FileInput
-    onChange={handleFileChange}
-    className="custom-class"
-  />
-</div>
+                  <Label>Group</Label>
+                  <Select
+              options={options}
+              onChange={handleSelectChange}
+              className="dark:bg-dark-900"
+              defaultValue="5"
+            />
+                </div>
+                <div>
+                  <Label>Image</Label>
+                  <FileInput
+                    onChange={handleFileChange}
+                    className="custom-class"
+                  />
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">

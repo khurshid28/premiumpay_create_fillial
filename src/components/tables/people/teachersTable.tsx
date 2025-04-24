@@ -11,13 +11,16 @@ import Moment from "moment";
 import Badge from "../../ui/badge/Badge";
 import Button from "../../ui/button/Button";
 import {
+  ArrowRightIcon,
   CloseIcon,
   CloseLineIcon,
   CopyIcon,
   DeleteIcon,
+  DownloadIcon,
   EditIcon,
   EyeCloseIcon,
   EyeIcon,
+  PlusIcon,
 } from "../../../icons";
 import { useEffect, useState } from "react";
 import { Teacher } from "../../../pages/People/Teachers";
@@ -25,6 +28,8 @@ import { useModal } from "../../../hooks/useModal";
 import Input from "../../form/input/InputField";
 import Label from "../../form/Label";
 import { Modal } from "../../ui/modal";
+import Select from "../../form/Select";
+import FileInput from "../../form/input/FileInput";
 
 interface Order {
   id: number;
@@ -44,6 +49,401 @@ interface Order {
 
 // Define the table data using the interface
 const statictableData: Order[] = [
+  {
+    id: 1,
+    user: {
+      image: "/images/user/user-17.jpg",
+      name: "Xurshid Ismoilov",
+      phone: "+998(95)064-28-27",
+      password: "11223344",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-01-04"),
+    team: {
+      images: [
+        "/images/user/user-22.jpg",
+        "/images/user/user-23.jpg",
+        "/images/user/user-24.jpg",
+      ],
+    },
+    status: "Active",
+  },
+  {
+    id: 2,
+    user: {
+      image: "/images/user/user-18.jpg",
+      name: "Kaiya George",
+      phone: "+998(95)064-28-27",
+      password: "66223344",
+    },
+    createdAt: new Date("2025-02-15"),
+    showPassword: false,
+    team: {
+      images: ["/images/user/user-25.jpg", "/images/user/user-26.jpg"],
+    },
+    status: "Pending",
+  },
+  {
+    id: 3,
+    user: {
+      image: "/images/user/user-17.jpg",
+      name: "Zain Geidt",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-02-16"),
+    team: {
+      images: ["/images/user/user-27.jpg"],
+    },
+    status: "Active",
+  },
+  {
+    id: 4,
+    user: {
+      image: "/images/user/user-20.jpg",
+      name: "Abram Schleifer",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-28.jpg",
+        "/images/user/user-29.jpg",
+        "/images/user/user-30.jpg",
+      ],
+    },
+    status: "Cancel",
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+  {
+    id: 1,
+    user: {
+      image: "/images/user/user-17.jpg",
+      name: "Xurshid Ismoilov",
+      phone: "+998(95)064-28-27",
+      password: "11223344",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-01-04"),
+    team: {
+      images: [
+        "/images/user/user-22.jpg",
+        "/images/user/user-23.jpg",
+        "/images/user/user-24.jpg",
+      ],
+    },
+    status: "Active",
+  },
+  {
+    id: 2,
+    user: {
+      image: "/images/user/user-18.jpg",
+      name: "Kaiya George",
+      phone: "+998(95)064-28-27",
+      password: "66223344",
+    },
+    createdAt: new Date("2025-02-15"),
+    showPassword: false,
+    team: {
+      images: ["/images/user/user-25.jpg", "/images/user/user-26.jpg"],
+    },
+    status: "Pending",
+  },
+  {
+    id: 3,
+    user: {
+      image: "/images/user/user-17.jpg",
+      name: "Zain Geidt",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-02-16"),
+    team: {
+      images: ["/images/user/user-27.jpg"],
+    },
+    status: "Active",
+  },
+  {
+    id: 4,
+    user: {
+      image: "/images/user/user-20.jpg",
+      name: "Abram Schleifer",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-28.jpg",
+        "/images/user/user-29.jpg",
+        "/images/user/user-30.jpg",
+      ],
+    },
+    status: "Cancel",
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
+  {
+    id: 1,
+    user: {
+      image: "/images/user/user-17.jpg",
+      name: "Xurshid Ismoilov",
+      phone: "+998(95)064-28-27",
+      password: "11223344",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-01-04"),
+    team: {
+      images: [
+        "/images/user/user-22.jpg",
+        "/images/user/user-23.jpg",
+        "/images/user/user-24.jpg",
+      ],
+    },
+    status: "Active",
+  },
+  {
+    id: 2,
+    user: {
+      image: "/images/user/user-18.jpg",
+      name: "Kaiya George",
+      phone: "+998(95)064-28-27",
+      password: "66223344",
+    },
+    createdAt: new Date("2025-02-15"),
+    showPassword: false,
+    team: {
+      images: ["/images/user/user-25.jpg", "/images/user/user-26.jpg"],
+    },
+    status: "Pending",
+  },
+  {
+    id: 3,
+    user: {
+      image: "/images/user/user-17.jpg",
+      name: "Zain Geidt",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-02-16"),
+    team: {
+      images: ["/images/user/user-27.jpg"],
+    },
+    status: "Active",
+  },
+  {
+    id: 4,
+    user: {
+      image: "/images/user/user-20.jpg",
+      name: "Abram Schleifer",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    showPassword: false,
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-28.jpg",
+        "/images/user/user-29.jpg",
+        "/images/user/user-30.jpg",
+      ],
+    },
+    status: "Cancel",
+  },
+  {
+    id: 5,
+    user: {
+      image: "/images/user/user-21.jpg",
+      name: "Carla George",
+      phone: "+998(95)064-28-27",
+      password: "44662244",
+    },
+    createdAt: new Date("2025-03-02"),
+    team: {
+      images: [
+        "/images/user/user-31.jpg",
+        "/images/user/user-32.jpg",
+        "/images/user/user-33.jpg",
+      ],
+    },
+    status: "Active",
+    showPassword: false,
+  },
   {
     id: 1,
     user: {
@@ -163,9 +563,78 @@ export default function TeachersTable() {
     );
   }
 
+  const options = [
+    { value: "5", label: "5" },
+    { value: "10", label: "10" },
+    { value: "20", label: "20" },
+  ];
+  let [optionValue, setoptionValue] = useState("5");
+
+  const handleSelectChange = (value: string) => {
+    setoptionValue(value);
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      console.log("Selected file:", file.name);
+    }
+  };
+
+  // Pationation
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const maxPage = Math.ceil(statictableData.length / +optionValue);
+
+  const startIndex = (currentPage - 1) * +optionValue;
+  const endIndex = startIndex + +optionValue;
+  let currentItems: Order[] = statictableData.slice(startIndex, endIndex);
+
+  const goToPreviousPage = () => {
+    setCurrentPage((page) => Math.max(page - 1, 1));
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((page) => Math.min(page + 1, maxPage));
+  };
+  console.log(">> data length :", statictableData.length);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * +optionValue;
+    const endIndex = startIndex + +optionValue;
+    currentItems = statictableData.slice(startIndex, endIndex);
+  }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [optionValue]);
+
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
       <div className="max-w-full overflow-x-auto">
+        <div className="px-5 py-3  flex flex-row justify-between items-center border-b border-gray-100 dark:border-white/[0.05]">
+          <div className="flex flex-row items-center gap-2 text-theme-sm font-medium text-gray-500 text-start  dark:text-gray-400">
+            <span>Show</span>
+
+            <Select
+              options={options}
+              onChange={handleSelectChange}
+              className="dark:bg-dark-900"
+              defaultValue="5"
+            />
+            <span>entries</span>
+          </div>
+          <div>
+            {" "}
+            <Button
+              size="sm"
+              variant="outline"
+              endIcon={<DownloadIcon className="size-5 fill-white" />}
+            >
+              Download
+            </Button>
+          </div>
+        </div>
         <Table>
           {/* Table Header */}
           <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
@@ -205,8 +674,8 @@ export default function TeachersTable() {
 
           {/* Table Body */}
           <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-            {tableData.map((order) => (
-              <TableRow key={order.id}>
+            {currentItems.map((order, index) => (
+              <TableRow key={index}>
                 <TableCell className="px-5 py-4 sm:px-6 text-start">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 overflow-hidden rounded-full">
@@ -304,6 +773,47 @@ export default function TeachersTable() {
           </TableBody>
         </Table>
       </div>
+
+      <div className="px-5 py-3 gap-3 flex flex-col md:flex-row justify-between md:items-center border-t border-gray-100 dark:border-white/[0.05] text-theme-sm font-medium text-gray-500  dark:text-gray-400">
+        <div className="flex flex-row items-center gap-2  text-start  ">
+          <Button
+            size="sm"
+            variant="outline"
+            className="w-10 h-10"
+            disabled={currentPage === 1}
+            onClick={goToPreviousPage}
+          >
+            <ArrowRightIcon className="rotate-180 fill-gray-500  dark:fill-gray-400 scale-200" />
+          </Button>
+
+          {[...Array(maxPage)].map((_, i) => (
+            <Button
+              size="sm"
+              variant={currentPage === i + 1 ? "primary" : "outline"}
+              className="w-10 h-10"
+              disabled={false}
+              key={i}
+              onClick={()=>{
+                currentPage !== i + 1 && setCurrentPage(i+1);
+              }}
+            >
+              {i + 1}
+            </Button>
+          ))}
+
+          <Button
+            size="sm"
+            variant="outline"
+            className="w-10 h-10"
+            disabled={currentPage === maxPage}
+            onClick={goToNextPage}
+          >
+            <ArrowRightIcon className=" fill-gray-500  dark:fill-gray-400 scale-200" />
+          </Button>
+        </div>
+        <div>Showing {((currentPage - 1) * +optionValue)  + 1} to {Math.min(statictableData.length, currentPage  * +optionValue)} of {statictableData.length} entries</div>
+      </div>
+
       <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] m-4">
         <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">
           <div className="px-2 pr-14">
@@ -372,6 +882,14 @@ export default function TeachersTable() {
                     }
                   />
                 </div>
+
+                <div>
+  <Label>Image</Label>
+  <FileInput
+    onChange={handleFileChange}
+    className="custom-class"
+  />
+</div>
               </div>
             </div>
             <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">

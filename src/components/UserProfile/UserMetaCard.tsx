@@ -210,7 +210,7 @@ export default function UserMetaCard() {
 
                   <div className="col-span-2 lg:col-span-1">
                     <Label>Phone</Label>
-                    <Input type="text" value="+09 363 398 46" />
+                    <Input type="text" value="+998(95) 064 28 27" />
                   </div>
 
                   <div className="col-span-2">

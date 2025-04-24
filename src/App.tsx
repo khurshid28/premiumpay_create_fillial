@@ -20,6 +20,10 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import RatePage from "./pages/Rate/rate";
 import TeachersPage from "./pages/People/Teachers";
+import StudentsPage from "./pages/People/Students";
+import GroupsPage from "./pages/People/Groups";
+import SubjectsPage from "./pages/Test/Subjects";
+import BooksPage from "./pages/Test/Books";
 
 export default function App() {
   return (
@@ -34,8 +38,14 @@ export default function App() {
 
              {/* People Page */}
              <Route path="/teachers" element={<TeachersPage />} />
+             <Route path="/groups" element={< GroupsPage />} />
+             <Route path="/students" element={<StudentsPage />} />
 
 
+
+            {/* People Page */}
+            <Route path="/subjects" element={<SubjectsPage />} />
+            <Route path="/books" element={<BooksPage />} />
 
             <Route index path="/rate" element={<RatePage />} />
 
