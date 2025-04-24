@@ -40,7 +40,7 @@ import MultiSelect from "../../form/MultiSelect";
     image: string;
     createdAt: Date;
     status: string;
-    group_id? : string;
+    subject_id? : string;
   }
   
   // Define the table data using the interface
@@ -53,6 +53,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+      subject_id : "Subject 1"
     },
     {
       id: 2,
@@ -62,6 +63,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 3,
@@ -71,6 +73,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-04-10"),
   
       status: "Active",
+       subject_id : "Subject 1"
     },
     {
       id: 1,
@@ -80,6 +83,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Cancel",
+       subject_id : "Subject 3"
     },
     {
       id: 2,
@@ -89,6 +93,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 1"
     },
     {
       id: 3,
@@ -98,6 +103,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-04-10"),
   
       status: "Active",
+       subject_id : "Subject 1"
     },
     {
       id: 1,
@@ -107,6 +113,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 2,
@@ -116,6 +123,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 3,
@@ -125,7 +133,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-04-10"),
   
       status: "Active",
-    },
+      subject_id : "Subject 2"    },
     {
       id: 1,
   
@@ -134,6 +142,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 2,
@@ -143,6 +152,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 1"
     },
     {
       id: 3,
@@ -152,6 +162,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-04-10"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 1,
@@ -161,6 +172,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 2,
@@ -170,6 +182,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 3,
@@ -179,6 +192,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-04-10"),
   
       status: "Active",
+       subject_id : "Subject 1"
     },
     {
       id: 1,
@@ -188,6 +202,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 2,
@@ -197,6 +212,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-03-02"),
   
       status: "Active",
+       subject_id : "Subject 2"
     },
     {
       id: 3,
@@ -206,6 +222,7 @@ import MultiSelect from "../../form/MultiSelect";
       createdAt: new Date("2025-04-10"),
   
       status: "Cancel",
+       subject_id : "Subject 1"
     },
   ];
   
@@ -224,6 +241,8 @@ import MultiSelect from "../../form/MultiSelect";
     let emptyBook: Book = {
       name: "",
       image: "",
+      section_id  : ""
+     
     };
     let [Book, setBook] = useState<Book>(emptyBook);
   
@@ -245,7 +264,7 @@ import MultiSelect from "../../form/MultiSelect";
   
     const startIndex = (currentPage - 1) * +optionValue;
     const endIndex = startIndex + +optionValue;
-    let currentItems: Order[] = statictableData.slice(startIndex, endIndex);
+    let currentItems: Order[] = tableData.slice(startIndex, endIndex);
   
     const goToPreviousPage = () => {
       setCurrentPage((page) => Math.max(page - 1, 1));
@@ -254,17 +273,15 @@ import MultiSelect from "../../form/MultiSelect";
     const goToNextPage = () => {
       setCurrentPage((page) => Math.min(page + 1, maxPage));
     };
-    console.log(">> data length :", statictableData.length);
+    console.log(">> currentItems length :", currentItems.length);
   
     useEffect(() => {
       const startIndex = (currentPage - 1) * +optionValue;
       const endIndex = startIndex + +optionValue;
-      currentItems = statictableData.slice(startIndex, endIndex);
-    }, [currentPage]);
+      currentItems = tableData.slice(startIndex, endIndex);
+    }, [currentPage,tableData]);
   
-    useEffect(() => {
-      setCurrentPage(1);
-    }, [optionValue]);
+  
   
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
@@ -280,6 +297,45 @@ import MultiSelect from "../../form/MultiSelect";
       { value: "Group 3", text: "Group 3", selected: false },
     ];
   
+
+    const Subject_options = [
+      { value: "All subjects", label: "All Subject" },
+      { value: "Subject 1", label: "Subject 1" },
+      { value: "Subject 2", label: "Subject 2"},
+      { value: "Subject 3", label: "Subject 3"},
+    ];
+
+    const all_Subject_options = [
+      { value: "Subject 1", label: "Subject 1" },
+      { value: "Subject 2", label: "Subject 2"},
+      { value: "Subject 3", label: "Subject 3"},
+    ];
+    
+    let [subjectoptionValue, setSubjectoptionValue] = useState("All subjects");
+    
+   
+    
+    const handleSelectSubjectChange = (value: string) => {
+      setSubjectoptionValue(value);
+    };
+    const handleSelectAllSubjectChange = (value: string ) => {
+    };
+
+    useEffect(() => {
+      setCurrentPage(1);
+      
+      
+      if (subjectoptionValue == "All subjects") {
+        settableData(statictableData);
+        
+      }else{
+        settableData(statictableData.filter((item)=>item.subject_id===subjectoptionValue));
+      }
+     
+
+     
+    }, [optionValue, subjectoptionValue]);
+
 
 
     return (
@@ -297,16 +353,15 @@ import MultiSelect from "../../form/MultiSelect";
               />
               <span>entries</span>
             </div>
-            <div>
-              {" "}
-              <Button
-                size="sm"
-                variant="outline"
-                endIcon={<DownloadIcon className="size-5 fill-white" />}
-              >
-                Download
-              </Button>
-            </div>
+            <div className="flex flex-row items-center gap-2 text-theme-sm font-medium text-gray-500 text-start  dark:text-gray-400">
+            
+            <Select
+              options={Subject_options}
+              onChange={handleSelectSubjectChange}
+              className="dark:bg-dark-900"
+            />
+          
+          </div>
           </div>
           <Table>
             {/* Table Header */}
@@ -323,6 +378,12 @@ import MultiSelect from "../../form/MultiSelect";
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
                   Added
+                </TableCell>
+                <TableCell
+                  isHeader
+                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                >
+                  Subject Name
                 </TableCell>
   
                 <TableCell
@@ -363,6 +424,10 @@ import MultiSelect from "../../form/MultiSelect";
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                     {Moment(order.createdAt).format("MMMM DD, yyyy")}
+                  </TableCell>
+
+                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                    {order.subject_id}
                   </TableCell>
   
                   <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
@@ -448,8 +513,8 @@ import MultiSelect from "../../form/MultiSelect";
           </div>
           <div>
             Showing {(currentPage - 1) * +optionValue + 1} to{" "}
-            {Math.min(statictableData.length, currentPage * +optionValue)} of{" "}
-            {statictableData.length} entries
+            {Math.min(tableData.length, currentPage * +optionValue)} of{" "}
+            {tableData.length} entries
           </div>
         </div>
   
@@ -457,10 +522,10 @@ import MultiSelect from "../../form/MultiSelect";
           <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">
             <div className="px-2 pr-14">
               <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-                Add Book
+              Edit Book
               </h4>
               <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-                Create new Book with full details.
+                Update Book with full details.
               </p>
             </div>
             <form className="flex flex-col">
@@ -476,6 +541,18 @@ import MultiSelect from "../../form/MultiSelect";
                     Selected Values: {selectedValues.join(", ")}
                   </p>
                 </div>
+
+                <div>
+                  <Label>Subjects</Label>
+                  <Select
+              options={all_Subject_options}
+              className="dark:bg-dark-900"
+              defaultValue={`${Book.section_id}`}
+              onChange={()=>{}}
+             
+            />
+                </div>
+
                   <div>
                     <Label>Name</Label>
                     <Input

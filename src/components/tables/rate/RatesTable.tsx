@@ -158,12 +158,14 @@ export default function RatesTable() {
   let [optionValue, setoptionValue] = useState("5");
   let [groupoptionValue, setGroupoptionValue] = useState("All group");
   
-  const handleSelectChange = (value: string) => {
-    setoptionValue(value);
-  };
+ 
   
   const handleSelectGroupChange = (value: string) => {
     setGroupoptionValue(value);
+  };
+
+  const handleSelectChange = (value: string) => {
+    setoptionValue(value);
   };
   
   // Pationation

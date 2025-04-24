@@ -2,7 +2,7 @@ import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import PageMeta from "../../components/common/PageMeta";
 
-import { BoxIcon, PlusIcon } from "../../icons";
+import { BoxIcon, DownloadIcon, PlusIcon } from "../../icons";
 import Button from "../../components/ui/button/Button";
 import { useModal } from "../../hooks/useModal";
 import Label from "../../components/form/Label";
@@ -16,6 +16,7 @@ import MultiSelect from "../../components/form/MultiSelect";
 export interface Book {
   name?: string;
   image?: string;
+  section_id? :  string
 }
 
 export default function BooksPage() {
@@ -50,16 +51,33 @@ export default function BooksPage() {
     { value: "Group 3", text: "Group 3", selected: false },
   ];
 
+  const all_Subject_options = [
+    { value: "Subject 1", label: "Subject 1" },
+    { value: "Subject 2", label: "Subject 2"},
+    { value: "Subject 3", label: "Subject 3"},
+  ];
+
   return (
     <>
       <PageMeta title="Books | Test Dashboard" description="Test Dashboard" />
       <PageBreadcrumb pageTitle="Books" />
 
       <div className="space-y-6 ">
+        
         <ComponentCard
           title="Books Table"
           action={
-            <>
+            <div className="flex flex-row gap-4">
+              <div>
+            
+              <Button
+                size="sm"
+                variant="outline"
+                endIcon={<DownloadIcon className="size-5 fill-white" />}
+              >
+                Download
+              </Button>
+            </div>
               <Button
                 size="sm"
                 variant="primary"
@@ -71,7 +89,7 @@ export default function BooksPage() {
               >
                 Add Book
               </Button>
-            </>
+            </div>
           }
         >
           <BooksTable />
@@ -99,6 +117,16 @@ export default function BooksPage() {
                   <p className="sr-only">
                     Selected Values: {selectedValues.join(", ")}
                   </p>
+                </div>
+                <div>
+                  <Label>Subjects</Label>
+                  <Select
+              options={all_Subject_options}
+              className="dark:bg-dark-900"
+              defaultValue={`${Book.section_id}`}
+              onChange={()=>{}}
+             
+            />
                 </div>
                 <div>
                   <Label>Name</Label>
