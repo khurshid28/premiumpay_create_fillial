@@ -24,6 +24,9 @@ import StudentsPage from "./pages/People/Students";
 import GroupsPage from "./pages/People/Groups";
 import SubjectsPage from "./pages/Test/Subjects";
 import BooksPage from "./pages/Test/Books";
+import SectionsPage from "./pages/Test/Sections";
+import ResultsPage from "./pages/Test/Results";
+import TestsPage from "./pages/Test/Tests";
 
 export default function App() {
   return (
@@ -46,6 +49,12 @@ export default function App() {
             {/* People Page */}
             <Route path="/subjects" element={<SubjectsPage />} />
             <Route path="/books" element={<BooksPage />} />
+            <Route path="/sections" element={<SectionsPage />} />
+            <Route path="/tests" element={<TestsPage />} />
+
+            <Route path="/results" element={<ResultsPage />} />
+
+
 
             <Route index path="/rate" element={<RatePage />} />
 

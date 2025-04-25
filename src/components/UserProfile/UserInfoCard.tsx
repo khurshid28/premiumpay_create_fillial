@@ -3,6 +3,7 @@ import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import Label from "../form/Label";
+import Moment from "moment";
 
 export default function UserInfoCard() {
   const { isOpen, openModal, closeModal } = useModal();
@@ -52,7 +53,7 @@ export default function UserInfoCard() {
                 Added
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                +998(95) 064 28 27
+                {Moment(new Date()).format("MMMM DD, yyyy")}
               </p>
             </div>
 

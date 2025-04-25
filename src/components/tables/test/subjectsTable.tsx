@@ -239,7 +239,7 @@ import {
     // Pationation
   
     const [currentPage, setCurrentPage] = useState(1);
-    const maxPage = Math.ceil(statictableData.length / +optionValue);
+    const maxPage = Math.ceil(tableData.length / +optionValue);
   
     const startIndex = (currentPage - 1) * +optionValue;
     const endIndex = startIndex + +optionValue;
@@ -257,7 +257,7 @@ import {
     useEffect(() => {
       const startIndex = (currentPage - 1) * +optionValue;
       const endIndex = startIndex + +optionValue;
-      currentItems = statictableData.slice(startIndex, endIndex);
+      currentItems = tableData.slice(startIndex, endIndex);
     }, [currentPage]);
   
     useEffect(() => {

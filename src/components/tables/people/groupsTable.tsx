@@ -239,11 +239,11 @@ export default function GroupsTable() {
   // Pationation
 
   const [currentPage, setCurrentPage] = useState(1);
-  const maxPage = Math.ceil(statictableData.length / +optionValue);
+  const maxPage = Math.ceil(tableData.length / +optionValue);
 
   const startIndex = (currentPage - 1) * +optionValue;
   const endIndex = startIndex + +optionValue;
-  let currentItems: Order[] = statictableData.slice(startIndex, endIndex);
+  let currentItems: Order[] = tableData.slice(startIndex, endIndex);
 
   const goToPreviousPage = () => {
     setCurrentPage((page) => Math.max(page - 1, 1));
@@ -252,12 +252,12 @@ export default function GroupsTable() {
   const goToNextPage = () => {
     setCurrentPage((page) => Math.min(page + 1, maxPage));
   };
-  console.log(">> data length :", statictableData.length);
+  console.log(">> data length :", tableData.length);
 
   useEffect(() => {
     const startIndex = (currentPage - 1) * +optionValue;
     const endIndex = startIndex + +optionValue;
-    currentItems = statictableData.slice(startIndex, endIndex);
+    currentItems = tableData.slice(startIndex, endIndex);
   }, [currentPage]);
 
   useEffect(() => {

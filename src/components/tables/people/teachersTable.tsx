@@ -584,11 +584,11 @@ export default function TeachersTable() {
   // Pationation
 
   const [currentPage, setCurrentPage] = useState(1);
-  const maxPage = Math.ceil(statictableData.length / +optionValue);
+  const maxPage = Math.ceil(tableData.length / +optionValue);
 
   const startIndex = (currentPage - 1) * +optionValue;
   const endIndex = startIndex + +optionValue;
-  let currentItems: Order[] = statictableData.slice(startIndex, endIndex);
+  let currentItems: Order[] = tableData.slice(startIndex, endIndex);
 
   const goToPreviousPage = () => {
     setCurrentPage((page) => Math.max(page - 1, 1));
@@ -602,7 +602,7 @@ export default function TeachersTable() {
   useEffect(() => {
     const startIndex = (currentPage - 1) * +optionValue;
     const endIndex = startIndex + +optionValue;
-    currentItems = statictableData.slice(startIndex, endIndex);
+    currentItems = tableData.slice(startIndex, endIndex);
   }, [currentPage]);
 
   useEffect(() => {
