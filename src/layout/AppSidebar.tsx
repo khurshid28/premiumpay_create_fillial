@@ -53,11 +53,19 @@ const navItems: NavItem[] = [
     icon: <BoxIcon />,
     subItems: [
       { name: "Params", path: "/credit-params", pro: false },
-
       { name: "Arizalar", path: "/arizalar", pro: false },
       { name: "Shartnomalar", path: "/shartnomalar", pro: false }, 
       
     
+    ],
+  },
+
+  {
+    name: "Firmalar",
+    icon: <GroupIcon />,
+    subItems: [
+      { name: "MCHJ", path: "/mchj", pro: false },
+      { name: "YATT", path: "/yatt", pro: false }, 
     ],
   },
 
@@ -417,7 +425,7 @@ const AppSidebar: React.FC = () => {
                 // width={150}
                 height={60}
               />
-                <p className="text-center font-medium  text-theme-md hover:text-gray-900   dark:hover:text-white">
+                <p className="text-center font-medium  text-theme-md hover:text-gray-900   dark:text-white">
                 Credit platform
               </p>
 
