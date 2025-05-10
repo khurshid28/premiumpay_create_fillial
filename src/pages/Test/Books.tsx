@@ -59,7 +59,7 @@ export default function BooksPage() {
 
   return (
     <>
-      <PageMeta title="Books | Test Dashboard" description="Test Dashboard" />
+      <PageMeta title="Books | Credit Dashboard" description="Credit Dashboard" />
       <PageBreadcrumb pageTitle="Books" />
 
       <div className="space-y-6 ">

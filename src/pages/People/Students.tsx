@@ -58,8 +58,8 @@ export default function StudentsPage() {
   return (
     <>
       <PageMeta
-        title="Students | Test Dashboard"
-        description="Test Dashboard"
+        title="Students | Credit Dashboard"
+        description="Credit Dashboard"
       />
       <PageBreadcrumb pageTitle="Students" />
    

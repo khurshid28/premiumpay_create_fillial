@@ -40,8 +40,8 @@ export default function GroupsPage() {
   return (
     <>
       <PageMeta
-        title="Groups | Test Dashboard"
-        description="Test Dashboard"
+        title="Groups | Credit Dashboard"
+        description="Credit Dashboard"
       />
       <PageBreadcrumb pageTitle="Groups" />
    

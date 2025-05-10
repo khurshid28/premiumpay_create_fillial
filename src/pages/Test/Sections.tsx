@@ -54,7 +54,7 @@ export default function SectionsPage() {
 
     return (
         <>
-            <PageMeta title="Sections | Test Dashboard" description="Test Dashboard" />
+            <PageMeta title="Sections | Credit Dashboard" description="Credit Dashboard" />
             <PageBreadcrumb pageTitle="Sections" />
 
             <div className="space-y-6 ">

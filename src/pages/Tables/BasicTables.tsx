@@ -7,8 +7,8 @@ export default function BasicTables() {
   return (
     <>
       <PageMeta
-        title="Test Dashboard"
-        description="Test Dashboard"
+        title="Credit Dashboard"
+        description="Credit Dashboard"
       />
       <PageBreadcrumb pageTitle="Basic Tables" />
       <div className="space-y-6">

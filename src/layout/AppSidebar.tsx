@@ -31,7 +31,7 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    subItems: [{ name: "Analytics", path: "/", pro: false }],
+    subItems: [{ name: "Statistics", path: "/", pro: false }],
   },
   {
     icon: <ShootingStarIcon />,
@@ -337,22 +337,27 @@ const AppSidebar: React.FC = () => {
       >
         <Link to="/">
           {isExpanded || isHovered || isMobileOpen ? (
-            <>
+            <div className="flex flex-row gap-4 items-center">
               <img
                 className="dark:hidden"
-                src="/images/logo/logo.svg"
+                src="/images/logo/logo-icon.svg"
                 alt="Logo"
-                width={150}
-                height={40}
+                // width={150}
+                height={60}
               />
               <img
                 className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
+                src="/images/logo/logo-icon.svg"
                 alt="Logo"
-                width={150}
-                height={40}
+                // width={150}
+                height={60}
               />
-            </>
+                <p className="text-center font-medium  text-theme-md hover:text-gray-900   dark:hover:text-white">
+                Credit platform
+              </p>
+
+             
+            </div>
           ) : (
             <img
               src="/images/logo/logo-icon.svg"

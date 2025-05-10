@@ -6,8 +6,8 @@ export default function NotFound() {
   return (
     <>
       <PageMeta
-        title="React.js 404 Dashboard | Test Dashboard"
-        description="This is React.js 404 Dashboard page - Test Dashboard"
+        title="React.js 404 Dashboard | Credit Dashboard"
+        description="This is React.js 404 Dashboard page - Credit Dashboard"
       />
       <div className="relative flex flex-col items-center justify-center min-h-screen p-6 overflow-hidden z-1">
         <GridShape />

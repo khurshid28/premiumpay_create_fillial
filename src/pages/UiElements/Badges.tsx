@@ -8,8 +8,8 @@ export default function Badges() {
   return (
     <div>
       <PageMeta
-        title="React.js Badges Dashboard | Test Dashboard"
-        description="This is React.js Badges Dashboard page - Test Dashboard"
+        title="React.js Badges Dashboard | Credit Dashboard"
+        description="This is React.js Badges Dashboard page - Credit Dashboard"
       />
       <PageBreadcrumb pageTitle="Badges" />
       <div className="space-y-5 sm:space-y-6">
