@@ -50,7 +50,7 @@ const tableData: Product[] = [
   },
   {
     id: 4,
-    name: "3 xonali uy",
+    name: "2 xonali uy",
     variants: "2 Variants",
     credit_type: "Ipoteka",
     price: "450 300 000",

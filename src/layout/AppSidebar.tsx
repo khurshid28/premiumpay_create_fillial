@@ -15,7 +15,19 @@ import {
   TableIcon,
   UserCircleIcon,
   StarHexaIcon,
-  ShootingStarIcon
+  ShootingStarIcon,
+  PaperPlaneIcon,
+  SettingsIcon,
+  CheckCircleIcon,
+  DocsIcon,
+  BoxIcon,
+  FolderIcon,
+  GroupIcon,
+  BoltIcon,
+  EnvelopeIcon,
+  ChatIcon,
+  TaskIcon,
+  ArrowRightIcon
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 import SidebarWidget from "./SidebarWidget";
@@ -33,11 +45,41 @@ const navItems: NavItem[] = [
     name: "Dashboard",
     subItems: [{ name: "Statistics", path: "/", pro: false }],
   },
+
+
+ 
   {
-    icon: <ShootingStarIcon />,
-    name: "Rate",
-    path: "/rate",
+    name: "Credits",
+    icon: <BoxIcon />,
+    subItems: [
+      { name: "Params", path: "/credit-params", pro: false },
+
+      { name: "Arizalar", path: "/arizalar", pro: false },
+      { name: "Shartnomalar", path: "/shartnomalar", pro: false }, 
+      
+    
+    ],
   },
+
+  {
+    icon: <SettingsIcon />,
+    name: "Settings",
+    subItems: [
+      { name: "Fillials", path: "/fillials", pro: false },
+      { name: "Users", path: "/users", pro: false },
+      { name: "Laws", path: "/laws", pro: false },
+      { name: "Templates", path: "/templates", pro: false },
+     
+    
+    
+    ],
+  },
+
+  // {
+  //   icon: <ShootingStarIcon />,
+  //   name: "Rate",
+  //   path: "/rate",
+  // },
   // {
   //   icon: <CalenderIcon />,
   //   name: "Calendar",
@@ -49,29 +91,52 @@ const navItems: NavItem[] = [
   //   path: "/profile",
   // },
   {
-    name: "People",
-    icon: <UserCircleIcon />,
+    name: "Scoring",
+    icon: <CheckCircleIcon />,
     subItems: [
-      { name: "Teachers", path: "/teachers", pro: false },
-      { name: "Groups", path: "/groups", pro: false },
-      { name: "Students", path: "/students", pro: false }
-    
+      { name: "Params", path: "/scoring-params", pro: false },
+      { name: "Requirements", path: "/requirements", pro: false },
+      { name: "Stop factors", path: "/stop-factors", pro: false }, 
+      { name: "Models", path: "/models", pro: false },
+      { name: "MCHJ", path: "/mchj", pro: false },
+      { name: "YATT", path: "/yatt", pro: false }
     
     ],
+  },
+ 
+
+  {
+    icon: <DocsIcon />,
+    name: "Docs",
+    path: "/docs",
+  },
+  
+  
+
+  {
+    icon: <ListIcon />,
+    name: "Paths",
+    path: "/paths",
   },
 
   {
-    name: "Test",
-    icon: <ListIcon />,
-    subItems: [
-      { name: "Subjects", path: "/subjects", pro: false },
-      { name: "Books", path: "/books", pro: false },
-      { name: "Sections", path: "/sections", pro: false },
-      { name: "Tests", path: "/tests", pro: false },
-      { name: "Results", path: "/results", pro: false }
-    
-    ],
+    icon: <ChatIcon />,
+    name: "Chats",
+    path: "/chats",
   },
+
+  // {
+  //   name: "Test",
+  //   icon: <ListIcon />,
+  //   subItems: [
+  //     { name: "Subjects", path: "/subjects", pro: false },
+  //     { name: "Books", path: "/books", pro: false },
+  //     { name: "Sections", path: "/sections", pro: false },
+  //     { name: "Tests", path: "/tests", pro: false },
+  //     { name: "Results", path: "/results", pro: false }
+    
+  //   ],
+  // },
   // {
   //   name: "Tables",
   //   icon: <TableIcon />,
