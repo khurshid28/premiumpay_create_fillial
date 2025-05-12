@@ -28,7 +28,7 @@ import {
   import Label from "../../form/Label";
   import { Modal } from "../../ui/modal";
   import Select from "../../form/Select";
-  import { Group } from "../../../pages/People/Groups";
+  import { Group } from "../../../pages/new/MerchantsPage";
   import DropzoneComponent from "../../form/form-elements/DropZone";
   import FileInputExample from "../../form/form-elements/FileInputExample";
   import FileInput from "../../form/input/FileInput";

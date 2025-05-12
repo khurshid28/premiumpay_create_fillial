@@ -9,8 +9,8 @@ export default function Images() {
   return (
     <>
       <PageMeta
-        title="React.js Images Dashboard | Credit Dashboard"
-        description="This is React.js Images page - Credit Dashboard"
+        title="React.js Images Dashboard | PremiumPay Dashboard"
+        description="This is React.js Images page - PremiumPay Dashboard"
       />
       <PageBreadcrumb pageTitle="Images" />
       <div className="space-y-5 sm:space-y-6">

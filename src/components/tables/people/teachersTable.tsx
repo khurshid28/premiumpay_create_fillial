@@ -23,7 +23,7 @@ import {
   PlusIcon,
 } from "../../../icons";
 import { useEffect, useState } from "react";
-import { Teacher } from "../../../pages/People/Teachers";
+import { Teacher } from "../../../pages/new/Teachers";
 import { useModal } from "../../../hooks/useModal";
 import Input from "../../form/input/InputField";
 import Label from "../../form/Label";

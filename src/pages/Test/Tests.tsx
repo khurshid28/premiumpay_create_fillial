@@ -60,7 +60,7 @@ export default function TestsPage() {
 
     return (
         <>
-            <PageMeta title="Tests | Credit Dashboard" description="Credit Dashboard" />
+            <PageMeta title="Tests | PremiumPay Dashboard" description="PremiumPay Dashboard" />
             <PageBreadcrumb pageTitle="Tests" />
 
             <div className="space-y-6 ">

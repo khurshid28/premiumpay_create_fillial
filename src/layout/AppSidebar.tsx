@@ -42,160 +42,35 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
-    name: "Dashboard",
-    subItems: [{ name: "Statistics", path: "/", pro: false }],
+    name: "Merchantlar",
+    path: "/", 
   },
 
-
- 
   {
-    name: "Credits",
+    name: "Filliallar",
     icon: <BoxIcon />,
-    subItems: [
-      { name: "Params", path: "/credit-params", pro: false },
-      { name: "Arizalar", path: "/arizalar", pro: false },
-      { name: "Shartnomalar", path: "/shartnomalar", pro: false }, 
-      
-    
-    ],
+    path: "/fillials", 
+   
   },
 
   {
-    name: "Firmalar",
+    name: "Operatorlar",
     icon: <GroupIcon />,
-    subItems: [
-      { name: "MCHJ", path: "/mchj", pro: false },
-      { name: "YATT", path: "/yatt", pro: false }, 
-    ],
+    path: "/operators", 
   },
 
-  {
-    icon: <SettingsIcon />,
-    name: "Settings",
-    subItems: [
-      { name: "Fillials", path: "/fillials", pro: false },
-      { name: "Users", path: "/users", pro: false },
-      { name: "Laws", path: "/laws", pro: false },
-      { name: "Templates", path: "/templates", pro: false },
-     
-    
-    
-    ],
-  },
-
-  // {
-  //   icon: <ShootingStarIcon />,
-  //   name: "Rate",
-  //   path: "/rate",
-  // },
-  // {
-  //   icon: <CalenderIcon />,
-  //   name: "Calendar",
-  //   path: "/calendar",
-  // },
-  // {
-  //   icon: <UserCircleIcon />,
-  //   name: "User Profile",
-  //   path: "/profile",
-  // },
-  {
-    name: "Scoring",
-    icon: <CheckCircleIcon />,
-    subItems: [
-      { name: "Params", path: "/scoring-params", pro: false },
-      { name: "Requirements", path: "/requirements", pro: false },
-      { name: "Stop factors", path: "/stop-factors", pro: false }, 
-      { name: "Models", path: "/models", pro: false },
-      { name: "MCHJ", path: "/mchj", pro: false },
-      { name: "YATT", path: "/yatt", pro: false }
-    
-    ],
-  },
+ 
+  
  
 
-  {
-    icon: <DocsIcon />,
-    name: "Docs",
-    path: "/docs",
-  },
-  
+ 
   
 
-  {
-    icon: <ListIcon />,
-    name: "Paths",
-    path: "/paths",
-  },
-
-  {
-    icon: <ChatIcon />,
-    name: "Chats",
-    path: "/chats",
-  },
-
-  // {
-  //   name: "Test",
-  //   icon: <ListIcon />,
-  //   subItems: [
-  //     { name: "Subjects", path: "/subjects", pro: false },
-  //     { name: "Books", path: "/books", pro: false },
-  //     { name: "Sections", path: "/sections", pro: false },
-  //     { name: "Tests", path: "/tests", pro: false },
-  //     { name: "Results", path: "/results", pro: false }
-    
-  //   ],
-  // },
-  // {
-  //   name: "Tables",
-  //   icon: <TableIcon />,
-  //   subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-  // },
-  // {
-  //   name: "Forms",
-  //   icon: <ListIcon />,
-  //   subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
-  // },
+ 
   
-  // {
-  //   name: "Pages",
-  //   icon: <PageIcon />,
-  //   subItems: [
-  //     { name: "Blank Page", path: "/blank", pro: false },
-  //     { name: "404 Error", path: "/error-404", pro: false },
-  //   ],
-  // },
+  
 ];
 
-// const othersItems: NavItem[] = [
-//   {
-//     icon: <PieChartIcon />,
-//     name: "Charts",
-//     subItems: [
-//       { name: "Line Chart", path: "/line-chart", pro: false },
-//       { name: "Bar Chart", path: "/bar-chart", pro: false },
-//     ],
-//   },
-//   {
-//     icon: <BoxCubeIcon />,
-//     name: "UI Elements",
-//     subItems: [
-//       { name: "Alerts", path: "/alerts", pro: false },
-//       { name: "Avatar", path: "/avatars", pro: false },
-//       { name: "Badge", path: "/badge", pro: false },
-//       { name: "Buttons", path: "/buttons", pro: false },
-//       { name: "Images", path: "/images", pro: false },
-//       { name: "Videos", path: "/videos", pro: false },
-//     ],
-//   },
-//   // {
-//   //   icon: <PlugInIcon />,
-//   //   name: "Authentication",
-//   //   subItems: [
-//   //     { name: "Sign In", path: "/signin", pro: false },
-//   //     { name: "Sign Up", path: "/signup", pro: false },
-//   //   ],
-//   // },
-// ];
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
@@ -412,31 +287,31 @@ const AppSidebar: React.FC = () => {
           {isExpanded || isHovered || isMobileOpen ? (
             <div className="flex flex-row gap-4 items-center">
               <img
-                className="dark:hidden"
-                src="/images/logo/logo-icon.svg"
+                className="dark:hidden "
+                src="/images/premium_pay_logo.png"
                 alt="Logo"
-                // width={150}
-                height={60}
+                width={160}
+               
               />
               <img
-                className="hidden dark:block"
-                src="/images/logo/logo-icon.svg"
+                className="hidden dark:block "
+                src="/images/premium_pay_logo.png"
                 alt="Logo"
-                // width={150}
-                height={60}
+                width={160}
+               
               />
-                <p className="text-center font-medium  text-theme-md hover:text-gray-900   dark:text-white">
-                Credit platform
-              </p>
+                {/* <p className="text-center font-medium  text-theme-md hover:text-gray-900   dark:text-white">
+                PremiumPay
+              </p> */}
 
              
             </div>
           ) : (
             <img
-              src="/images/logo/logo-icon.svg"
+              src="/images/premium_pay_logo.png"
               alt="Logo"
-              width={32}
-              height={32}
+              width={45}
+              height={45}
             />
           )}
         </Link>

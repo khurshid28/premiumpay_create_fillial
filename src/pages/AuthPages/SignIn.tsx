@@ -6,8 +6,8 @@ export default function SignIn() {
   return (
     <>
       <PageMeta
-        title="Credit Dashboard"
-        description="Credit Dashboard"
+        title="PremiumPay Dashboard"
+        description="PremiumPay Dashboard"
       />
       <AuthLayout>
         <SignInForm />
