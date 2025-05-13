@@ -25,7 +25,7 @@ import FillialsPage from "./pages/new/Fillials";
 export default function App() {
   return (
     <>
-      <Router >
+      <Router basename="/create-fillial">
         <ScrollToTop />
         <Routes>
           {/* Dashboard Layout */}
