@@ -14,29 +14,27 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
-import TeachersPage from "./pages/new/Teachers";
-import StudentsPage from "./pages/new/Students";
-import GroupsPage from "./pages/new/MerchantsPage";
-import SubjectsPage from "./pages/Test/Subjects";
-import BooksPage from "./pages/Test/Books";
-import SectionsPage from "./pages/Test/Sections";
-import ResultsPage from "./pages/Test/Results";
-import TestsPage from "./pages/Test/Tests";
-import MerchantsPage from "./pages/new/MerchantsPage";
+import TeachersPage from "./pages/new/Operators";
+import StudentsPage from "./pages/new/Fillials";
+import GroupsPage from "./pages/new/Merchants";
+
+import MerchantsPage from "./pages/new/Merchants";
+import OperatorsPage from "./pages/new/Operators";
+import FillialsPage from "./pages/new/Fillials";
 
 export default function App() {
   return (
     <>
-      <Router>
+      <Router >
         <ScrollToTop />
         <Routes>
           {/* Dashboard Layout */}
+          <Route index path="/" element={<SignIn/>} />
           <Route element={<AppLayout />}>
-            <Route index path="/" element={<MerchantsPage/>} />
-
              {/* People Page */}
-             <Route path="/fillials" element={<TeachersPage />} />
-             <Route path="/operators" element={< TeachersPage />} />
+             <Route path="/merchants" element={<MerchantsPage />} />
+             <Route path="/fillials" element={<FillialsPage />} />
+             <Route path="/operators" element={< OperatorsPage />} />
              
 
 

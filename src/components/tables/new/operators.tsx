@@ -23,13 +23,13 @@ import {
     PlusIcon,
   } from "../../../icons";
   import { useEffect, useState } from "react";
-  import { Student } from "../../../pages/new/Students";
+  import { Operator } from "../../../pages/new/Operators";
   import { useModal } from "../../../hooks/useModal";
   import Input from "../../form/input/InputField";
   import Label from "../../form/Label";
   import { Modal } from "../../ui/modal";
   import Select from "../../form/Select";
-import FileInput from "../../form/input/FileInput";
+  import FileInput from "../../form/input/FileInput";
   
   interface Order {
     id: number;
@@ -39,6 +39,9 @@ import FileInput from "../../form/input/FileInput";
       phone: string;
       password: string;
     };
+    fillial :{
+     name : string;
+    },
     createdAt: Date;
     team: {
       images: string[];
@@ -57,226 +60,8 @@ import FileInput from "../../form/input/FileInput";
         phone: "+998(95)064-28-27",
         password: "11223344",
       },
-      showPassword: false,
-      createdAt: new Date("2025-01-04"),
-      team: {
-        images: [
-          "/images/user/user-22.jpg",
-          "/images/user/user-23.jpg",
-          "/images/user/user-24.jpg",
-        ],
-      },
-      status: "Active",
-    },
-    {
-      id: 2,
-      user: {
-        image: "/images/user/user-18.jpg",
-        name: "Kaiya George",
-        phone: "+998(95)064-28-27",
-        password: "66223344",
-      },
-      createdAt: new Date("2025-02-15"),
-      showPassword: false,
-      team: {
-        images: ["/images/user/user-25.jpg", "/images/user/user-26.jpg"],
-      },
-      status: "Pending",
-    },
-    {
-      id: 3,
-      user: {
-        image: "/images/user/user-17.jpg",
-        name: "Zain Geidt",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      showPassword: false,
-      createdAt: new Date("2025-02-16"),
-      team: {
-        images: ["/images/user/user-27.jpg"],
-      },
-      status: "Active",
-    },
-    {
-      id: 4,
-      user: {
-        image: "/images/user/user-20.jpg",
-        name: "Abram Schleifer",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      showPassword: false,
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-28.jpg",
-          "/images/user/user-29.jpg",
-          "/images/user/user-30.jpg",
-        ],
-      },
-      status: "Cancel",
-    },
-    {
-      id: 5,
-      user: {
-        image: "/images/user/user-21.jpg",
-        name: "Carla George",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-31.jpg",
-          "/images/user/user-32.jpg",
-          "/images/user/user-33.jpg",
-        ],
-      },
-      status: "Active",
-      showPassword: false,
-    },
-    {
-      id: 5,
-      user: {
-        image: "/images/user/user-21.jpg",
-        name: "Carla George",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-31.jpg",
-          "/images/user/user-32.jpg",
-          "/images/user/user-33.jpg",
-        ],
-      },
-      status: "Active",
-      showPassword: false,
-    },
-    {
-      id: 5,
-      user: {
-        image: "/images/user/user-21.jpg",
-        name: "Carla George",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-31.jpg",
-          "/images/user/user-32.jpg",
-          "/images/user/user-33.jpg",
-        ],
-      },
-      status: "Active",
-      showPassword: false,
-    },
-    {
-      id: 5,
-      user: {
-        image: "/images/user/user-21.jpg",
-        name: "Carla George",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-31.jpg",
-          "/images/user/user-32.jpg",
-          "/images/user/user-33.jpg",
-        ],
-      },
-      status: "Active",
-      showPassword: false,
-    },
-    {
-      id: 5,
-      user: {
-        image: "/images/user/user-21.jpg",
-        name: "Carla George",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-31.jpg",
-          "/images/user/user-32.jpg",
-          "/images/user/user-33.jpg",
-        ],
-      },
-      status: "Active",
-      showPassword: false,
-    },
-    {
-      id: 5,
-      user: {
-        image: "/images/user/user-21.jpg",
-        name: "Carla George",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-31.jpg",
-          "/images/user/user-32.jpg",
-          "/images/user/user-33.jpg",
-        ],
-      },
-      status: "Active",
-      showPassword: false,
-    },
-  
-    {
-      id: 5,
-      user: {
-        image: "/images/user/user-21.jpg",
-        name: "Carla George",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-31.jpg",
-          "/images/user/user-32.jpg",
-          "/images/user/user-33.jpg",
-        ],
-      },
-      status: "Active",
-      showPassword: false,
-    },
-    {
-      id: 5,
-      user: {
-        image: "/images/user/user-21.jpg",
-        name: "Carla George",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-31.jpg",
-          "/images/user/user-32.jpg",
-          "/images/user/user-33.jpg",
-        ],
-      },
-      status: "Active",
-      showPassword: false,
-    },
-    {
-      id: 1,
-      user: {
-        image: "/images/user/user-17.jpg",
-        name: "Xurshid Ismoilov",
-        phone: "+998(95)064-28-27",
-        password: "11223344",
+      fillial :{
+        name : "Idea Qo'ng'irot"
       },
       showPassword: false,
       createdAt: new Date("2025-01-04"),
@@ -297,6 +82,9 @@ import FileInput from "../../form/input/FileInput";
         phone: "+998(95)064-28-27",
         password: "66223344",
       },
+      fillial :{
+        name : "Idea Qo'ng'irot"
+      },
       createdAt: new Date("2025-02-15"),
       showPassword: false,
       team: {
@@ -312,6 +100,9 @@ import FileInput from "../../form/input/FileInput";
         phone: "+998(95)064-28-27",
         password: "44662244",
       },
+      fillial :{
+        name : "Idea Qo'ng'irot"
+      },
       showPassword: false,
       createdAt: new Date("2025-02-16"),
       team: {
@@ -326,6 +117,9 @@ import FileInput from "../../form/input/FileInput";
         name: "Abram Schleifer",
         phone: "+998(95)064-28-27",
         password: "44662244",
+      },
+      fillial :{
+        name : "Idea Qo'ng'irot"
       },
       showPassword: false,
       createdAt: new Date("2025-03-02"),
@@ -345,6 +139,9 @@ import FileInput from "../../form/input/FileInput";
         name: "Carla George",
         phone: "+998(95)064-28-27",
         password: "44662244",
+      },
+      fillial :{
+        name : "Idea Qo'ng'irot"
       },
       createdAt: new Date("2025-03-02"),
       team: {
@@ -358,80 +155,15 @@ import FileInput from "../../form/input/FileInput";
       showPassword: false,
     },
     {
-      id: 1,
-      user: {
-        image: "/images/user/user-17.jpg",
-        name: "Xurshid Ismoilov",
-        phone: "+998(95)064-28-27",
-        password: "11223344",
-      },
-      showPassword: false,
-      createdAt: new Date("2025-01-04"),
-      team: {
-        images: [
-          "/images/user/user-22.jpg",
-          "/images/user/user-23.jpg",
-          "/images/user/user-24.jpg",
-        ],
-      },
-      status: "Active",
-    },
-    {
-      id: 2,
-      user: {
-        image: "/images/user/user-18.jpg",
-        name: "Kaiya George",
-        phone: "+998(95)064-28-27",
-        password: "66223344",
-      },
-      createdAt: new Date("2025-02-15"),
-      showPassword: false,
-      team: {
-        images: ["/images/user/user-25.jpg", "/images/user/user-26.jpg"],
-      },
-      status: "Pending",
-    },
-    {
-      id: 3,
-      user: {
-        image: "/images/user/user-17.jpg",
-        name: "Zain Geidt",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      showPassword: false,
-      createdAt: new Date("2025-02-16"),
-      team: {
-        images: ["/images/user/user-27.jpg"],
-      },
-      status: "Active",
-    },
-    {
-      id: 4,
-      user: {
-        image: "/images/user/user-20.jpg",
-        name: "Abram Schleifer",
-        phone: "+998(95)064-28-27",
-        password: "44662244",
-      },
-      showPassword: false,
-      createdAt: new Date("2025-03-02"),
-      team: {
-        images: [
-          "/images/user/user-28.jpg",
-          "/images/user/user-29.jpg",
-          "/images/user/user-30.jpg",
-        ],
-      },
-      status: "Cancel",
-    },
-    {
       id: 5,
       user: {
         image: "/images/user/user-21.jpg",
         name: "Carla George",
         phone: "+998(95)064-28-27",
         password: "44662244",
+      },
+      fillial :{
+        name : "Texnomart Shahar"
       },
       createdAt: new Date("2025-03-02"),
       team: {
@@ -445,54 +177,52 @@ import FileInput from "../../form/input/FileInput";
       showPassword: false,
     },
     {
-      id: 1,
+      id: 5,
       user: {
-        image: "/images/user/user-17.jpg",
-        name: "Xurshid Ismoilov",
-        phone: "+998(95)064-28-27",
-        password: "11223344",
-      },
-      showPassword: false,
-      createdAt: new Date("2025-01-04"),
-      team: {
-        images: [
-          "/images/user/user-22.jpg",
-          "/images/user/user-23.jpg",
-          "/images/user/user-24.jpg",
-        ],
-      },
-      status: "Active",
-    },
-    {
-      id: 2,
-      user: {
-        image: "/images/user/user-18.jpg",
-        name: "Kaiya George",
-        phone: "+998(95)064-28-27",
-        password: "66223344",
-      },
-      createdAt: new Date("2025-02-15"),
-      showPassword: false,
-      team: {
-        images: ["/images/user/user-25.jpg", "/images/user/user-26.jpg"],
-      },
-      status: "Pending",
-    },
-    {
-      id: 3,
-      user: {
-        image: "/images/user/user-17.jpg",
-        name: "Zain Geidt",
+        image: "/images/user/user-21.jpg",
+        name: "Carla George",
         phone: "+998(95)064-28-27",
         password: "44662244",
       },
-      showPassword: false,
-      createdAt: new Date("2025-02-16"),
+      fillial :{
+        name : "Texnomart Shahar"
+      },
+      createdAt: new Date("2025-03-02"),
       team: {
-        images: ["/images/user/user-27.jpg"],
+        images: [
+          "/images/user/user-31.jpg",
+          "/images/user/user-32.jpg",
+          "/images/user/user-33.jpg",
+        ],
+      },
+      
+      status: "Active",
+      showPassword: false,
+    },
+    {
+      id: 5,
+      user: {
+        image: "/images/user/user-21.jpg",
+        name: "Carla George",
+        phone: "+998(95)064-28-27",
+        password: "44662244",
+      },
+      fillial :{
+        name : "Texnomart Shahar"
+      },
+      createdAt: new Date("2025-03-02"),
+      team: {
+        images: [
+          "/images/user/user-31.jpg",
+          "/images/user/user-32.jpg",
+          "/images/user/user-33.jpg",
+        ],
       },
       status: "Active",
+      showPassword: false,
     },
+ 
+    
     {
       id: 4,
       user: {
@@ -500,6 +230,9 @@ import FileInput from "../../form/input/FileInput";
         name: "Abram Schleifer",
         phone: "+998(95)064-28-27",
         password: "44662244",
+      },
+      fillial :{
+        name : "Texnomart Shahar"
       },
       showPassword: false,
       createdAt: new Date("2025-03-02"),
@@ -519,6 +252,9 @@ import FileInput from "../../form/input/FileInput";
         name: "Carla George",
         phone: "+998(95)064-28-27",
         password: "44662244",
+      },
+      fillial :{
+        name : "Texnomart Shahar"
       },
       createdAt: new Date("2025-03-02"),
       team: {
@@ -533,7 +269,7 @@ import FileInput from "../../form/input/FileInput";
     },
   ];
   
-  export default function StudentsTable() {
+  export default function OperatorsTable() {
     const [tableData, settableData] = useState(statictableData);
   
     const { isOpen, openModal, closeModal } = useModal();
@@ -543,15 +279,15 @@ import FileInput from "../../form/input/FileInput";
       console.log("handleAdding...");
   
       closeModal();
-      setStudent(emptyStudent);
+      setOperator(emptyOperator);
     };
-    let emptyStudent: Student = {
+    let emptyOperator: Operator = {
       firstName: "",
       lastName: "",
       phone: "901234567",
       password: "12345678",
     };
-    let [Student, setStudent] = useState<Student>(emptyStudent);
+    let [Operator, setOperator] = useState<Operator>(emptyOperator);
     function setShowPassword(id: number) {
       settableData(
         tableData.map((e) => {
@@ -562,12 +298,6 @@ import FileInput from "../../form/input/FileInput";
         })
       );
     }
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-          console.log("Selected file:", file.name);
-        }
-      };
   
     const options = [
       { value: "5", label: "5" },
@@ -575,20 +305,17 @@ import FileInput from "../../form/input/FileInput";
       { value: "20", label: "20" },
     ];
     let [optionValue, setoptionValue] = useState("5");
-
-    const group_options = [
-        { value: "Group 1", label: "Group 1" },
-    { value: "Group 2", label: "Group 2" },
-    { value: "Group 3", label: "Group 3" },
-      ];
-      let [groupoptionValue, setgroupoptionValue] = useState("5");
   
     const handleSelectChange = (value: string) => {
       setoptionValue(value);
     };
-    const handleSelectGroupChange = (value: string) => {
-        setgroupoptionValue(value);
-      };
+  
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (file) {
+        console.log("Selected file:", file.name);
+      }
+    };
   
     // Pationation
   
@@ -617,6 +344,20 @@ import FileInput from "../../form/input/FileInput";
     useEffect(() => {
       setCurrentPage(1);
     }, [optionValue]);
+  
+
+
+    const all_merchant_options = [
+      { value: "Artel", label: "Artel" },
+      { value: "Idea", label: "Idea" },
+      { value: "MediaPark", label: "MediaPark" },
+  ];
+
+  const all_fillial_options = [
+    { value: "Artel 1", label: "Artel 1" },
+    { value: "Idea 1", label: "Idea 1" },
+    { value: "MediaPark 1", label: "MediaPark 1"  },
+];
   
     return (
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
@@ -652,13 +393,13 @@ import FileInput from "../../form/input/FileInput";
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Students
+                  Operators
                 </TableCell>
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Added
+                  Fillial name
                 </TableCell>
                 <TableCell
                   isHeader
@@ -706,7 +447,7 @@ import FileInput from "../../form/input/FileInput";
                     </div>
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                    {Moment(order.createdAt).format("MMMM DD, yyyy")}
+                    {order.fillial.name}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 flex gap-2  flex-row items-center">
                     {order.showPassword ? order.user.password : "✷✷✷✷✷"}{" "}
@@ -757,7 +498,7 @@ import FileInput from "../../form/input/FileInput";
                       onClick={() => {
                         let names = order.user.name.split(" ");
   
-                        setStudent({
+                        setOperator({
                           firstName: names[0],
                           lastName: names[1],
                           password: order.user.password,
@@ -827,23 +568,47 @@ import FileInput from "../../form/input/FileInput";
           <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">
             <div className="px-2 pr-14">
               <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-                Edit Student
+                Edit Operator
               </h4>
               <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-              Update Student with full details.
+              Update Operator with full details.
               </p>
             </div>
             <form className="flex flex-col">
               <div className="px-2 overflow-y-auto custom-scrollbar">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
+
+
+
+                <div>
+                                    <Label>Merchant</Label>
+                                    <Select
+                                        options={all_merchant_options}
+                                        className="dark:bg-dark-900"
+                                       
+                                        onChange={() => { }}
+
+                                    />
+                                </div>
+                <div>
+                                    <Label>Fillial</Label>
+                                    <Select
+                                        options={all_fillial_options}
+                                        className="dark:bg-dark-900"
+                                       
+                                        onChange={() => { }}
+
+                                    />
+                                </div>
+
                   <div>
                     <Label>Firstname</Label>
                     <Input
                       type="text"
-                      value={Student.firstName}
+                      value={Operator.firstName}
                       onChange={(e) =>
-                        setStudent({
-                          ...Student,
+                        setOperator({
+                          ...Operator,
                           firstName: e.target.value,
                         })
                       }
@@ -854,10 +619,10 @@ import FileInput from "../../form/input/FileInput";
                     <Label>Lastname</Label>
                     <Input
                       type="text"
-                      value={Student.lastName}
+                      value={Operator.lastName}
                       onChange={(e) =>
-                        setStudent({
-                          ...Student,
+                        setOperator({
+                          ...Operator,
                           lastName: e.target.value,
                         })
                       }
@@ -868,10 +633,10 @@ import FileInput from "../../form/input/FileInput";
                     <Label>Phonenumber</Label>
                     <Input
                       type="text"
-                      value={Student.phone}
+                      value={Operator.phone}
                       onChange={(e) =>
-                        setStudent({
-                          ...Student,
+                        setOperator({
+                          ...Operator,
                           phone: e.target.value,
                         })
                       }
@@ -882,33 +647,23 @@ import FileInput from "../../form/input/FileInput";
                     <Label>Password</Label>
                     <Input
                       type="text"
-                      value={Student.password}
+                      value={Operator.password}
                       onChange={(e) =>
-                        setStudent({
-                          ...Student,
+                        setOperator({
+                          ...Operator,
                           password: e.target.value,
                         })
                       }
                     />
                   </div>
-
+  
                   <div>
-                  <Label>Group</Label>
-                  <Select
-              options={group_options}
-              onChange={handleSelectGroupChange}
-              className="dark:bg-dark-900"
-             
-            />
-                </div>
-
-                <div>
-                  <Label>Image</Label>
-                  <FileInput
-                    onChange={handleFileChange}
-                    className="custom-class"
-                  />
-                </div>
+    <Label>Image</Label>
+    <FileInput
+      onChange={handleFileChange}
+      className="custom-class"
+    />
+  </div>
                 </div>
               </div>
               <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">

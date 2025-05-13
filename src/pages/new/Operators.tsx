@@ -1,6 +1,7 @@
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import PageMeta from "../../components/common/PageMeta";
+import OperatorsTable from "../../components/tables/new/operators";
 import { BoxIcon, PlusIcon } from "../../icons";
 import Button from "../../components/ui/button/Button";
 import { useModal } from "../../hooks/useModal";
@@ -8,17 +9,15 @@ import Label from "../../components/form/Label";
 import Input from "../../components/form/input/InputField";
 import { Modal } from "../../components/ui/modal";
 import { useState } from "react";
-import StudentsTable from "../../components/tables/people/studentsTable";
-import Select from "../../components/form/Select";
 import FileInput from "../../components/form/input/FileInput";
-export interface Student {
+import Select from "../../components/form/Select";
+export interface Operator {
   firstName: string;
   lastName: string;
   phone: string;
   password: string;
-  group_id?: string
 }
-export default function StudentsPage() {
+export default function OperatorsPage() {
   const { isOpen, openModal, closeModal } = useModal();
   const handleAdding = () => {
     // Handle save logic here
@@ -26,48 +25,46 @@ export default function StudentsPage() {
     console.log("handleAdding...");
 
     closeModal();
-    setStudent(emptyStudent);
+    setOperator(emptyOperator);
   };
-  let emptyStudent: Student = {
+  let emptyOperator: Operator = {
     firstName: "",
     lastName: "",
     phone: "901234567",
     password: "12345678",
-     
   };
-
-  
-  let [Student, setStudent] = useState<Student>(emptyStudent);
-
-  const options = [
-    { value: "Group 1", label: "Group 1" },
-    { value: "Group 2", label: "Group 2" },
-    { value: "Group 3", label: "Group 3" },
-  ];
-  let [optionValue, setoptionValue] = useState("");
-
-  const handleSelectChange = (value: string) => {
-    setoptionValue(value);
-  };
+  let [Operator, setOperator] = useState<Operator>(emptyOperator);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       console.log("Selected file:", file.name);
     }
   };
+  const all_merchant_options = [
+    { value: "Artel", label: "Artel" },
+    { value: "Idea", label: "Idea" },
+    { value: "MediaPark", label: "MediaPark" },
+];
+
+const all_fillial_options = [
+  { value: "Artel 1", label: "Artel 1" },
+  { value: "Idea 1", label: "Idea 1" },
+  { value: "MediaPark 1", label: "MediaPark 1"  },
+];
+
   return (
     <>
       <PageMeta
-        title="Students | PremiumPay Dashboard"
+        title="Operators | PremiumPay Dashboard"
         description="PremiumPay Dashboard"
       />
-      <PageBreadcrumb pageTitle="Students" />
+      <PageBreadcrumb pageTitle="Operators" />
    
        <div className="space-y-6 ">
        
        
          <ComponentCard
-          title="Students Table"
+          title="Operators Table"
           action={
             <>
               <Button
@@ -75,39 +72,59 @@ export default function StudentsPage() {
                 variant="primary"
                 startIcon={<PlusIcon className="size-5 fill-white" />}
                 onClick={()=>{
-                  setStudent(emptyStudent)
+                  setOperator(emptyOperator)
                   openModal()
                 }}
               >
-                Add Student
+                Add Operator
               </Button>
             </>
           }
         >
-          <StudentsTable />
+          <OperatorsTable />
         </ComponentCard>
       </div>
       <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] m-4">
         <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">
           <div className="px-2 pr-14">
             <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-              Add Student
+              Add Operator
             </h4>
             <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-              Create new Student with full details.
+              Create new Operator with full details.
             </p>
           </div>
           <form className="flex flex-col">
             <div className="px-2 overflow-y-auto custom-scrollbar">
               <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
+              <div>
+                                    <Label>Merchant</Label>
+                                    <Select
+                                        options={all_merchant_options}
+                                        className="dark:bg-dark-900"
+                                       
+                                        onChange={() => { }}
+
+                                    />
+                                </div>
+                <div>
+                                    <Label>Fillial</Label>
+                                    <Select
+                                        options={all_fillial_options}
+                                        className="dark:bg-dark-900"
+                                       
+                                        onChange={() => { }}
+
+                                    />
+                                </div>
                 <div>
                   <Label>Firstname</Label>
                   <Input
                     type="text"
-                    value={Student.firstName}
+                    value={Operator.firstName}
                     onChange={(e) =>
-                      setStudent({
-                        ...Student,
+                      setOperator({
+                        ...Operator,
                         firstName: e.target.value,
                       })
                     }
@@ -118,10 +135,10 @@ export default function StudentsPage() {
                   <Label>Lastname</Label>
                   <Input
                     type="text"
-                    value={Student.lastName}
+                    value={Operator.lastName}
                     onChange={(e) =>
-                      setStudent({
-                        ...Student,
+                      setOperator({
+                        ...Operator,
                         lastName: e.target.value,
                       })
                     }
@@ -132,10 +149,10 @@ export default function StudentsPage() {
                   <Label>Phonenumber</Label>
                   <Input
                     type="text"
-                    value={Student.phone}
+                    value={Operator.phone}
                     onChange={(e) =>
-                      setStudent({
-                        ...Student,
+                      setOperator({
+                        ...Operator,
                         phone: e.target.value,
                       })
                     }
@@ -146,33 +163,22 @@ export default function StudentsPage() {
                   <Label>Password</Label>
                   <Input
                     type="text"
-                    value={Student.password}
+                    value={Operator.password}
                     onChange={(e) =>
-                      setStudent({
-                        ...Student,
+                      setOperator({
+                        ...Operator,
                         password: e.target.value,
                       })
                     }
                   />
                 </div>
-
-                
                 <div>
-                  <Label>Group</Label>
-                  <Select
-              options={options}
-              onChange={handleSelectChange}
-              className="dark:bg-dark-900"
-              defaultValue="5"
-            />
-                </div>
-                <div>
-                  <Label>Image</Label>
-                  <FileInput
-                    onChange={handleFileChange}
-                    className="custom-class"
-                  />
-                </div>
+  <Label>Image</Label>
+  <FileInput
+    onChange={handleFileChange}
+    className="custom-class"
+  />
+</div>
               </div>
             </div>
             <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">

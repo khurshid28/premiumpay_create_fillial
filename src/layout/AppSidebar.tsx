@@ -43,7 +43,7 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Merchantlar",
-    path: "/", 
+    path: "/merchants", 
   },
 
   {

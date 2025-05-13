@@ -128,7 +128,7 @@ export default function SignInForm() {
                   </Link>
                 </div> */}
                 <div>
-                  <Button className="w-full mt-8" size="sm" onClick={()=> navigate("/")}>
+                  <Button className="w-full mt-8" size="sm" onClick={()=> navigate("/merchants")}>
                     Sign in
                   </Button>
                 </div>

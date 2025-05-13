@@ -28,7 +28,7 @@ import Input from "../../form/input/InputField";
 import Label from "../../form/Label";
 import { Modal } from "../../ui/modal";
 import Select from "../../form/Select";
-import { Merchant } from "../../../pages/new/Merchants";
+import { Fillial } from "../../../pages/new/Fillials";
 import DropzoneComponent from "../../form/form-elements/DropZone";
 import FileInputExample from "../../form/form-elements/FileInputExample";
 import FileInput from "../../form/input/FileInput";
@@ -36,6 +36,10 @@ import FileInput from "../../form/input/FileInput";
 interface Order {
   id: number;
   name: string;
+  merchant: {
+    name: string;
+  },
+  region: string;
   image: string;
   createdAt: Date;
   status: string;
@@ -45,38 +49,59 @@ interface Order {
 const statictableData: Order[] = [
   {
     id: 1,
-
-    name: "Artel",
-    image: "/images/new/artel.png",
+    merchant: {
+      name: "Idea"
+    },
+    name: "Oq Tepa",
+    image: "/images/new/idea.png",
     createdAt: new Date("2025-03-02"),
-
+    region: "Toshkent sh",
     status: "Active",
   },
   {
     id: 2,
 
-    name: "Idea",
+    name: "Mirobod",
+    merchant: {
+      name: "Idea"
+    },
+    region: "Toshkent sh",
     image: "/images/new/idea.png",
     createdAt: new Date("2025-03-02"),
 
     status: "Active",
   },
- 
 
-   {
-    id: 2,
 
-    name: "MediaPark",
+  {
+    id: 3,
+    merchant: {
+      name: "MediaPark"
+    },
+    region: "Toshkent sh",
+    name: "Chilonzor",
     image: "/images/new/media.png",
     createdAt: new Date("2025-03-02"),
     status: "Active",
   },
- 
 
-  
+  {
+    id: 4,
+    merchant: {
+      name: "MediaPark"
+    },
+    region: "Samarqand",
+    name: "Shahrisabs",
+    image: "/images/new/media.png",
+    createdAt: new Date("2025-03-02"),
+    status: "Active",
+  },
+
+
+
 ];
 
-export default function MerchantsTable() {
+export default function FillialsTable() {
   const [tableData, settableData] = useState(statictableData);
 
   const { isOpen, openModal, closeModal } = useModal();
@@ -86,13 +111,13 @@ export default function MerchantsTable() {
     console.log("handleAdding...");
 
     closeModal();
-    setMerchant(emptyMerchant);
+    setFillial(emptyFillial);
   };
-  let emptyMerchant: Merchant = {
+  let emptyFillial: Fillial = {
     name: "",
     image: "",
   };
-  let [Merchant, setMerchant] = useState<Merchant>(emptyMerchant);
+  let [Fillial, setFillial] = useState<Fillial>(emptyFillial);
 
   const options = [
     { value: "5", label: "5" },
@@ -100,6 +125,10 @@ export default function MerchantsTable() {
     { value: "20", label: "20" },
   ];
   let [optionValue, setoptionValue] = useState("5");
+
+  let [percent, setPercent] = useState("38");
+
+  let [percent_type, setPercentType] = useState("OUT");
 
   const handleSelectChange = (value: string) => {
     setoptionValue(value);
@@ -139,6 +168,31 @@ export default function MerchantsTable() {
       console.log("Selected file:", file.name);
     }
   };
+
+
+  const region_options = [
+    { value: "Toshkent sh", label: "Toshkent sh" },
+    { value: "Andijon", label: "Andijon" },
+    { value: "Buxoro", label: "Buxoro" },
+    { value: "Farg'ona", label: "Farg'ona" },
+    { value: "Jizzax", label: "Jizzax" },
+    { value: "Samarqand", label: "Samarqand" },
+    { value: "Toshkent", label: "Toshkent" },
+
+  ];
+  const all_merchant_options = [
+    { value: "Artel", label: "Artel" },
+    { value: "Idea", label: "Idea" },
+    { value: "MediaPark", label: "MediaPark" },
+  ];
+  const percent_type_options = [
+    { value: "OUT", label: "OUT" },
+    { value: "IN", label: "IN" },
+    
+  ];
+
+  
+
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
       <div className="max-w-full overflow-x-auto">
@@ -173,13 +227,20 @@ export default function MerchantsTable() {
                 isHeader
                 className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
               >
-                Merchants
+                Fillials
               </TableCell>
               <TableCell
                 isHeader
                 className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
               >
-                Added
+                Fillial
+              </TableCell>
+
+              <TableCell
+                isHeader
+                className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+              >
+                Region
               </TableCell>
 
               <TableCell
@@ -219,7 +280,11 @@ export default function MerchantsTable() {
                   </div>
                 </TableCell>
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                  {Moment(order.createdAt).format("MMMM DD, yyyy")}
+                  {order.merchant.name}
+                </TableCell>
+
+                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                  {order.region}
                 </TableCell>
 
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
@@ -229,8 +294,8 @@ export default function MerchantsTable() {
                       order.status === "Active"
                         ? "success"
                         : order.status === "Pending"
-                        ? "warning"
-                        : "error"
+                          ? "warning"
+                          : "error"
                     }
                   >
                     {order.status}
@@ -242,7 +307,7 @@ export default function MerchantsTable() {
                     variant="outline"
                     className="text-xl fill-gray-500 dark:fill-gray-400"
                     onClick={() => {
-                      setMerchant({
+                      setFillial({
                         name: order.name,
                         image: "",
                       });
@@ -255,7 +320,7 @@ export default function MerchantsTable() {
                   <Button
                     size="mini"
                     variant="outline"
-                    onClick={async () => {}}
+                    onClick={async () => { }}
                   >
                     <DeleteIcon className="text-xl fill-gray-500 dark:fill-gray-400"></DeleteIcon>
                   </Button>
@@ -314,36 +379,176 @@ export default function MerchantsTable() {
         <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">
           <div className="px-2 pr-14">
             <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-              Edit Merchant
+              Edit Fillial
             </h4>
             <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-              Update Merchant with full details.
+              Update Fillial with full details.
             </p>
           </div>
           <form className="flex flex-col">
             <div className="px-2 overflow-y-auto custom-scrollbar">
               <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
+
+                <div>
+                  <Label>Region</Label>
+                  <Select
+                    options={region_options}
+                    className="dark:bg-dark-900"
+                    onChange={() => { }}
+
+                  />
+                </div>
+
+                <div>
+                  <Label>Address</Label>
+                  <Input
+                    type="text"
+
+
+                  />
+                </div>
+
+
+                <div>
+                  <Label>Merchant</Label>
+                  <Select
+                    options={all_merchant_options}
+                    className="dark:bg-dark-900"
+
+                    onChange={() => { }}
+
+                  />
+                </div>
+
                 <div>
                   <Label>Name</Label>
                   <Input
                     type="text"
-                    value={Merchant.name}
+                    value={Fillial.name}
                     onChange={(e) =>
-                      setMerchant({
-                        ...Merchant,
+                      setFillial({
+                        ...Fillial,
                         name: e.target.value,
                       })
                     }
                   />
                 </div>
 
+
+            
+
+
+                <div>
+                  <Label>Bank name</Label>
+                  <Input
+                    type="text"
+
+                    onChange={(e) => { }
+                    }
+                  />
+                </div>
+
+
+
+
+                <div>
+                  <Label>MFO</Label>
+                  <Input
+                    type="text"
+
+                    onChange={(e) => { }
+                    }
+                  />
+                </div>
+                <div>
+                  <Label>INN</Label>
+                  <Input
+                    type="text"
+
+                    onChange={(e) => { }
+                    }
+                  />
+                </div>
+
+
+                <div>
+                  <Label>Hisob raqam</Label>
+                  <Input
+                    type="text"
+
+                    onChange={(e) => { }
+                    }
+                  />
+                </div>
+
+
+
+
+                <div>
+                  <Label>Director Name</Label>
+                  <Input
+                    type="text"
+
+                    onChange={(e) => { }
+                    }
+                  />
+                </div>
+                <div>
+                  <Label>Director Phone</Label>
+                  <Input
+                    type="text"
+                    onChange={(e) => { }
+                    }
+                  />
+
+                  
+                </div>
+
+
+                <div>
+                  <Label>12 Months</Label>
+                  <Input
+                    type="text"
+                    value={percent}
+                    onChange={(e) => {
+                      setPercent(e.target.value)
+                     }
+                    }
+                  />
+
+                  
+                </div>
+
+                <div>
+                  <Label>Percent Type</Label>
+                  <Select
+                    options={percent_type_options}
+                    className="dark:bg-dark-900"
+                   defaultValue={percent_type}
+                    onChange={(e) => {
+                      setPercentType(e);
+                     }}
+
+                  />
+                </div>
+
+
+
+
+
+
+
+
+
+
+                {/* 
                 <div>
                   <Label>Image</Label>
                   <FileInput
                     onChange={handleFileChange}
                     className="custom-class"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">
