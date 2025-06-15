@@ -12,6 +12,8 @@ export default function UserInfoCard() {
     console.log("Saving changes...");
     closeModal();
   };
+
+  let user = JSON.parse(localStorage.getItem("user") ?? "null");
   return (
     <div className="p-5 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
@@ -26,7 +28,7 @@ export default function UserInfoCard() {
                 First Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-              Xurshid
+              {(user?.fullname ?? "Admin").toString().split(" ")[0]}
               </p>
             </div>
 
@@ -35,7 +37,7 @@ export default function UserInfoCard() {
                 Last Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Ismoilov
+            {(user?.fullname ?? "Admin").toString().split(" ").length > 1 ?  (user?.fullname ?? "Admin").toString().split(" ")[1] :""}
               </p>
             </div>
 
@@ -44,18 +46,11 @@ export default function UserInfoCard() {
                 Phone
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                +998(95)064-28-27
+              {user?.phone ?? ""}
               </p>
             </div>
 
-            <div>
-              <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                Added
-              </p>
-              <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                {Moment(new Date()).format("MMMM DD, yyyy")}
-              </p>
-            </div>
+           
 
             <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">

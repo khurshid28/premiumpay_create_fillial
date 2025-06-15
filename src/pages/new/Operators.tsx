@@ -8,9 +8,12 @@ import { useModal } from "../../hooks/useModal";
 import Label from "../../components/form/Label";
 import Input from "../../components/form/input/InputField";
 import { Modal } from "../../components/ui/modal";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import FileInput from "../../components/form/input/FileInput";
 import Select from "../../components/form/Select";
+import axiosClient from "../../service/axios.service";
+import { useFetchWithLoader } from "../../hooks/useFetchWithLoader";
+import { LoadSpinner } from "../../components/spinner/load-spinner";
 export interface Operator {
   firstName: string;
   lastName: string;
@@ -44,13 +47,21 @@ export default function OperatorsPage() {
     { value: "Artel", label: "Artel" },
     { value: "Idea", label: "Idea" },
     { value: "MediaPark", label: "MediaPark" },
-];
+  ];
 
-const all_fillial_options = [
-  { value: "Artel 1", label: "Artel 1" },
-  { value: "Idea 1", label: "Idea 1" },
-  { value: "MediaPark 1", label: "MediaPark 1"  },
-];
+  const all_fillial_options = [
+    { value: "Artel 1", label: "Artel 1" },
+    { value: "Idea 1", label: "Idea 1" },
+    { value: "MediaPark 1", label: "MediaPark 1" },
+  ];
+
+  const fetchOperators = useCallback(() => {
+    return axiosClient.get("/user/all").then((res) => res.data);
+  }, []);
+
+  const { data, isLoading, error, refetch } = useFetchWithLoader({
+    fetcher: fetchOperators,
+  });
 
   return (
     <>
@@ -59,30 +70,35 @@ const all_fillial_options = [
         description="PremiumPay Dashboard"
       />
       <PageBreadcrumb pageTitle="Operators" />
-   
-       <div className="space-y-6 ">
-       
-       
-         <ComponentCard
-          title="Operators Table"
-          action={
-            <>
-              <Button
-                size="sm"
-                variant="primary"
-                startIcon={<PlusIcon className="size-5 fill-white" />}
-                onClick={()=>{
-                  setOperator(emptyOperator)
-                  openModal()
-                }}
-              >
-                Add Operator
-              </Button>
-            </>
-          }
-        >
-          <OperatorsTable />
-        </ComponentCard>
+
+      <div className="space-y-6 ">
+        {isLoading && (
+          <div className="min-h-[450px]  flex-col flex justify-center">
+            <LoadSpinner />
+          </div>
+        )}
+        {data && (
+          <ComponentCard
+            title="Operators Table"
+            action={
+              <>
+                <Button
+                  size="sm"
+                  variant="primary"
+                  startIcon={<PlusIcon className="size-5 fill-white" />}
+                  onClick={() => {
+                    setOperator(emptyOperator);
+                    openModal();
+                  }}
+                >
+                  Add Operator
+                </Button>
+              </>
+            }
+          >
+            <OperatorsTable data={data} refetch={refetch} />
+          </ComponentCard>
+        )}
       </div>
       <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] m-4">
         <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">
@@ -97,26 +113,22 @@ const all_fillial_options = [
           <form className="flex flex-col">
             <div className="px-2 overflow-y-auto custom-scrollbar">
               <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-              <div>
-                                    <Label>Merchant</Label>
-                                    <Select
-                                        options={all_merchant_options}
-                                        className="dark:bg-dark-900"
-                                       
-                                        onChange={() => { }}
-
-                                    />
-                                </div>
                 <div>
-                                    <Label>Fillial</Label>
-                                    <Select
-                                        options={all_fillial_options}
-                                        className="dark:bg-dark-900"
-                                       
-                                        onChange={() => { }}
-
-                                    />
-                                </div>
+                  <Label>Merchant</Label>
+                  <Select
+                    options={all_merchant_options}
+                    className="dark:bg-dark-900"
+                    onChange={() => {}}
+                  />
+                </div>
+                <div>
+                  <Label>Fillial</Label>
+                  <Select
+                    options={all_fillial_options}
+                    className="dark:bg-dark-900"
+                    onChange={() => {}}
+                  />
+                </div>
                 <div>
                   <Label>Firstname</Label>
                   <Input
@@ -173,12 +185,12 @@ const all_fillial_options = [
                   />
                 </div>
                 <div>
-  <Label>Image</Label>
-  <FileInput
-    onChange={handleFileChange}
-    className="custom-class"
-  />
-</div>
+                  <Label>Image</Label>
+                  <FileInput
+                    onChange={handleFileChange}
+                    className="custom-class"
+                  />
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">

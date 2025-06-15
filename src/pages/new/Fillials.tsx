@@ -8,10 +8,13 @@ import { useModal } from "../../hooks/useModal";
 import Label from "../../components/form/Label";
 import Input from "../../components/form/input/InputField";
 import { Modal } from "../../components/ui/modal";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import FillialsTable from "../../components/tables/new/fillials";
 import FileInput from "../../components/form/input/FileInput";
 import Select from "../../components/form/Select";
+import axiosClient from "../../service/axios.service";
+import { useFetchWithLoader } from "../../hooks/useFetchWithLoader";
+import { LoadSpinner } from "../../components/spinner/load-spinner";
 export interface Fillial {
   name?: string;
   image?: string;
@@ -59,6 +62,15 @@ export default function FillialsPage() {
   ];
 
 
+   const fetchFillials = useCallback(() => {
+    return axiosClient.get("/fillial/all").then((res) => res.data);
+  }, []);
+
+  const { data, isLoading, error, refetch } = useFetchWithLoader({
+    fetcher: fetchFillials,
+  });
+
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -74,9 +86,15 @@ export default function FillialsPage() {
       <PageBreadcrumb pageTitle="Fillials" />
    
        <div className="space-y-6 ">
+        {isLoading && (
+                 <div className="min-h-[450px]  flex-col flex justify-center">
+                   <LoadSpinner />
+                 </div>
+               )}
        
        
-         <ComponentCard
+         {
+          data && <ComponentCard
           title="Fillials Table"
           action={
             <>
@@ -94,8 +112,9 @@ export default function FillialsPage() {
             </>
           }
         >
-          <FillialsTable />
+          <FillialsTable data={data} refetch={refetch}/>
         </ComponentCard>
+         }
       </div>
       <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] m-4">
         <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">

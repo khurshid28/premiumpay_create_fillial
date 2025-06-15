@@ -3,13 +3,40 @@ import { Link, useNavigate } from "react-router";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
-import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
+import { toast } from "react-toastify";
+import axiosClient from "../../service/axios.service";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
+
+  let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await axiosClient.post('/auth/login', { login, password });
+     
+      if (!(res.data.user && res.data.user.role == "SUPER")) {
+        throw new Error("Login yoki parol noto‘g‘ri : " + JSON.stringify(res.data.user),);
+      }
+
+      localStorage.setItem('token', res.data.access_token);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+
+
+      navigate('/merchants');
+      toast.success('Kirish muvaffaqiyatli');
+
+    } catch (error) {
+      console.error('Login error:', error);
+      toast.error('Login yoki parol noto‘g‘ri');
+
+    }
+  };
   return (
     <div className="flex flex-col flex-1">
       <div className="w-full max-w-md pt-10 mx-auto">
@@ -90,7 +117,7 @@ export default function SignInForm() {
                   <Label>
                     Login <span className="text-error-500">*</span>{" "}
                   </Label>
-                  <Input placeholder="Login123" />
+                  <Input placeholder="Enter your login" onChange={(e) => setLogin(e.target.value)}/>
                 </div>
                 <div>
                   <Label>
@@ -100,6 +127,7 @@ export default function SignInForm() {
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
@@ -128,7 +156,7 @@ export default function SignInForm() {
                   </Link>
                 </div> */}
                 <div>
-                  <Button className="w-full mt-8" size="sm" onClick={()=> navigate("/merchants")}>
+                  <Button className="w-full mt-8" size="sm"  onClick={handleSubmit} >
                     Sign in
                   </Button>
                 </div>

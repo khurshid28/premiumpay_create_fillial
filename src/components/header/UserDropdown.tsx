@@ -13,6 +13,7 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false);
   }
+    let user = JSON.parse(localStorage.getItem("user") ?? "null");
   return (
     <div className="relative">
       <button
@@ -51,10 +52,10 @@ export default function UserDropdown() {
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            Xurshid Ismoilov
+            {user?.fullname ??  'Admin' }
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-            +998(95)064-28-27
+              {  user?.phone ??  '+998901234567' }
           </span>
         </div>
 

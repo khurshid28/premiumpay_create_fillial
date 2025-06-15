@@ -21,11 +21,12 @@ import GroupsPage from "./pages/new/Merchants";
 import MerchantsPage from "./pages/new/Merchants";
 import OperatorsPage from "./pages/new/Operators";
 import FillialsPage from "./pages/new/Fillials";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
     <>
-      <Router basename="/create-fillial">
+      <Router basename="/">
         <ScrollToTop />
         <Routes>
           {/* Dashboard Layout */}
@@ -83,6 +84,9 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
+
+        <ToastContainer position="bottom-right"  autoClose={2000}
+  hideProgressBar={false}/>
     </>
   );
 }

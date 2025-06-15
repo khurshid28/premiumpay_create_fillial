@@ -33,76 +33,97 @@ import DropzoneComponent from "../../form/form-elements/DropZone";
 import FileInputExample from "../../form/form-elements/FileInputExample";
 import FileInput from "../../form/input/FileInput";
 
-interface Order {
+// interface Order {
+//   id: number;
+//   name: string;
+//   merchant: {
+//     name: string;
+//   };
+//   region: string;
+//   image: string;
+//   createdAt: Date;
+//   status: string;
+// }
+
+interface FillialItemProps {
   id: number;
   name: string;
-  merchant: {
-    name: string;
-  },
-  region: string;
   image: string;
-  createdAt: Date;
-  status: string;
+  createdAt: string;
+  inn? :string;
+  region:string;
+   director_name : string;
+    director_phone :string;
+    percent_type : string;
+  merchant?: {
+    id: number;
+    name: string;
+    image: string;
+    createdAt: string;
+  };
 }
 
 // Define the table data using the interface
-const statictableData: Order[] = [
-  {
-    id: 1,
-    merchant: {
-      name: "Idea"
-    },
-    name: "Oq Tepa",
-    image: "/images/new/idea.png",
-    createdAt: new Date("2025-03-02"),
-    region: "Toshkent sh",
-    status: "Active",
-  },
-  {
-    id: 2,
+// const statictableData: Order[] = [
+//   {
+//     id: 1,
+//     merchant: {
+//       name: "Idea"
+//     },
+//     name: "Oq Tepa",
+//     image: "/images/new/idea.png",
+//     createdAt: new Date("2025-03-02"),
+//     region: "Toshkent sh",
+//     status: "Active",
+//   },
+//   {
+//     id: 2,
 
-    name: "Mirobod",
-    merchant: {
-      name: "Idea"
-    },
-    region: "Toshkent sh",
-    image: "/images/new/idea.png",
-    createdAt: new Date("2025-03-02"),
+//     name: "Mirobod",
+//     merchant: {
+//       name: "Idea"
+//     },
+//     region: "Toshkent sh",
+//     image: "/images/new/idea.png",
+//     createdAt: new Date("2025-03-02"),
 
-    status: "Active",
-  },
+//     status: "Active",
+//   },
 
+//   {
+//     id: 3,
+//     merchant: {
+//       name: "MediaPark"
+//     },
+//     region: "Toshkent sh",
+//     name: "Chilonzor",
+//     image: "/images/new/media.png",
+//     createdAt: new Date("2025-03-02"),
+//     status: "Active",
+//   },
 
-  {
-    id: 3,
-    merchant: {
-      name: "MediaPark"
-    },
-    region: "Toshkent sh",
-    name: "Chilonzor",
-    image: "/images/new/media.png",
-    createdAt: new Date("2025-03-02"),
-    status: "Active",
-  },
+//   {
+//     id: 4,
+//     merchant: {
+//       name: "MediaPark"
+//     },
+//     region: "Samarqand",
+//     name: "Shahrisabs",
+//     image: "/images/new/media.png",
+//     createdAt: new Date("2025-03-02"),
+//     status: "Active",
+//   },
 
-  {
-    id: 4,
-    merchant: {
-      name: "MediaPark"
-    },
-    region: "Samarqand",
-    name: "Shahrisabs",
-    image: "/images/new/media.png",
-    createdAt: new Date("2025-03-02"),
-    status: "Active",
-  },
+// ];
 
-
-
-];
-
-export default function FillialsTable() {
-  const [tableData, settableData] = useState(statictableData);
+export default function FillialsTable({
+  data,
+  refetch,
+}: {
+  data: FillialItemProps[];
+  refetch: () => Promise<void>;
+}) {
+  const [tableData, settableData] = useState(data);
 
   const { isOpen, openModal, closeModal } = useModal();
   const handleAdding = () => {
@@ -141,7 +162,7 @@ export default function FillialsTable() {
 
   const startIndex = (currentPage - 1) * +optionValue;
   const endIndex = startIndex + +optionValue;
-  let currentItems: Order[] = tableData.slice(startIndex, endIndex);
+  let currentItems: FillialItemProps[] = tableData.slice(startIndex, endIndex);
 
   const goToPreviousPage = () => {
     setCurrentPage((page) => Math.max(page - 1, 1));
@@ -169,7 +190,6 @@ export default function FillialsTable() {
     }
   };
 
-
   const region_options = [
     { value: "Toshkent sh", label: "Toshkent sh" },
     { value: "Andijon", label: "Andijon" },
@@ -178,7 +198,6 @@ export default function FillialsTable() {
     { value: "Jizzax", label: "Jizzax" },
     { value: "Samarqand", label: "Samarqand" },
     { value: "Toshkent", label: "Toshkent" },
-
   ];
   const all_merchant_options = [
     { value: "Artel", label: "Artel" },
@@ -188,10 +207,7 @@ export default function FillialsTable() {
   const percent_type_options = [
     { value: "OUT", label: "OUT" },
     { value: "IN", label: "IN" },
-    
   ];
-
-  
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
@@ -223,24 +239,44 @@ export default function FillialsTable() {
           {/* Table Header */}
           <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
             <TableRow>
-              <TableCell
+                 <TableCell
                 isHeader
-                className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
               >
-                Fillials
-              </TableCell>
-              <TableCell
-                isHeader
-                className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-              >
-                Fillial
+                ID
               </TableCell>
 
               <TableCell
                 isHeader
                 className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
               >
+                Fillial
+              </TableCell>
+              <TableCell
+                isHeader
+                className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+              >
+                Merchant
+              </TableCell>
+
+               <TableCell
+                isHeader
+                className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+              >
+                Director
+              </TableCell>
+               <TableCell
+                isHeader
+                className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+              >
                 Region
+              </TableCell>
+
+              <TableCell
+                isHeader
+                className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+              >
+                INN
               </TableCell>
 
               <TableCell
@@ -262,13 +298,16 @@ export default function FillialsTable() {
           <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
             {currentItems.map((order, index) => (
               <TableRow key={index}>
+                 <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                  {order.id}
+                </TableCell>
                 <TableCell className="px-5 py-4 sm:px-6 text-start">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 overflow-hidden rounded-sm ">
                       <img
                         width={50}
                         height={50}
-                        src={order.image}
+                        src={order.image ? import.meta.env.VITE_STATIC_PATH +  order.image : "/images/shop.png"}
                         alt={order.name}
                       />
                     </div>
@@ -280,25 +319,41 @@ export default function FillialsTable() {
                   </div>
                 </TableCell>
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                  {order.merchant.name}
+                  {order.merchant?.name}
+                </TableCell>
+
+                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                    <div>
+                      <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                        {order?.director_name}
+                      </span>
+                      <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
+                        {order?.director_phone}
+                      </span>
+                    </div>
                 </TableCell>
 
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                   {order.region}
                 </TableCell>
 
+                   <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                  {order.inn}
+                </TableCell>
+
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                   <Badge
                     size="sm"
                     color={
-                      order.status === "Active"
-                        ? "success"
-                        : order.status === "Pending"
-                          ? "warning"
-                          : "error"
+                      "success"
+                      // order.status === "Active"
+                      //   ? "success"
+                      //   : order.status === "Pending"
+                      //   ? "warning"
+                      //   : "error"
                     }
                   >
-                    {order.status}
+                    Active
                   </Badge>
                 </TableCell>
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 flex gap-2  flex-row items-center">
@@ -320,7 +375,7 @@ export default function FillialsTable() {
                   <Button
                     size="mini"
                     variant="outline"
-                    onClick={async () => { }}
+                    onClick={async () => {}}
                   >
                     <DeleteIcon className="text-xl fill-gray-500 dark:fill-gray-400"></DeleteIcon>
                   </Button>
@@ -370,8 +425,8 @@ export default function FillialsTable() {
         </div>
         <div>
           Showing {(currentPage - 1) * +optionValue + 1} to{" "}
-          {Math.min(statictableData.length, currentPage * +optionValue)} of{" "}
-          {statictableData.length} entries
+          {Math.min(data.length, currentPage * +optionValue)} of{" "}
+          {data.length} entries
         </div>
       </div>
 
@@ -388,35 +443,26 @@ export default function FillialsTable() {
           <form className="flex flex-col">
             <div className="px-2 overflow-y-auto custom-scrollbar">
               <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-
                 <div>
                   <Label>Region</Label>
                   <Select
                     options={region_options}
                     className="dark:bg-dark-900"
-                    onChange={() => { }}
-
+                    onChange={() => {}}
                   />
                 </div>
 
                 <div>
                   <Label>Address</Label>
-                  <Input
-                    type="text"
-
-
-                  />
+                  <Input type="text" />
                 </div>
-
 
                 <div>
                   <Label>Merchant</Label>
                   <Select
                     options={all_merchant_options}
                     className="dark:bg-dark-900"
-
-                    onChange={() => { }}
-
+                    onChange={() => {}}
                   />
                 </div>
 
@@ -434,76 +480,33 @@ export default function FillialsTable() {
                   />
                 </div>
 
-
-            
-
-
                 <div>
                   <Label>Bank name</Label>
-                  <Input
-                    type="text"
-
-                    onChange={(e) => { }
-                    }
-                  />
+                  <Input type="text" onChange={(e) => {}} />
                 </div>
-
-
-
 
                 <div>
                   <Label>MFO</Label>
-                  <Input
-                    type="text"
-
-                    onChange={(e) => { }
-                    }
-                  />
+                  <Input type="text" onChange={(e) => {}} />
                 </div>
                 <div>
                   <Label>INN</Label>
-                  <Input
-                    type="text"
-
-                    onChange={(e) => { }
-                    }
-                  />
+                  <Input type="text" onChange={(e) => {}} />
                 </div>
-
 
                 <div>
                   <Label>Hisob raqam</Label>
-                  <Input
-                    type="text"
-
-                    onChange={(e) => { }
-                    }
-                  />
+                  <Input type="text" onChange={(e) => {}} />
                 </div>
-
-
-
 
                 <div>
                   <Label>Director Name</Label>
-                  <Input
-                    type="text"
-
-                    onChange={(e) => { }
-                    }
-                  />
+                  <Input type="text" onChange={(e) => {}} />
                 </div>
                 <div>
                   <Label>Director Phone</Label>
-                  <Input
-                    type="text"
-                    onChange={(e) => { }
-                    }
-                  />
-
-                  
+                  <Input type="text" onChange={(e) => {}} />
                 </div>
-
 
                 <div>
                   <Label>12 Months</Label>
@@ -511,12 +514,9 @@ export default function FillialsTable() {
                     type="text"
                     value={percent}
                     onChange={(e) => {
-                      setPercent(e.target.value)
-                     }
-                    }
+                      setPercent(e.target.value);
+                    }}
                   />
-
-                  
                 </div>
 
                 <div>
@@ -524,22 +524,12 @@ export default function FillialsTable() {
                   <Select
                     options={percent_type_options}
                     className="dark:bg-dark-900"
-                   defaultValue={percent_type}
+                    defaultValue={percent_type}
                     onChange={(e) => {
                       setPercentType(e);
-                     }}
-
+                    }}
                   />
                 </div>
-
-
-
-
-
-
-
-
-
 
                 {/* 
                 <div>

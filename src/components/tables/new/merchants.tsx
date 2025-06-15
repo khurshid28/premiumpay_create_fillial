@@ -33,51 +33,60 @@ import DropzoneComponent from "../../form/form-elements/DropZone";
 import FileInputExample from "../../form/form-elements/FileInputExample";
 import FileInput from "../../form/input/FileInput";
 
-interface Order {
+// interface Order {
+//   id: number;
+//   name: string;
+//   image: string;
+//   createdAt: Date;
+//   status: string;
+// }
+
+interface MerchantItemProps {
+
   id: number;
   name: string;
   image: string;
-  createdAt: Date;
-  status: string;
+  createdAt: string;
+
 }
-
 // Define the table data using the interface
-const statictableData: Order[] = [
-  {
-    id: 1,
+// const statictableData: Order[] = [
+//   {
+//     id: 1,
 
-    name: "Artel",
-    image: "/images/new/artel.png",
-    createdAt: new Date("2025-03-02"),
+//     name: "Artel",
+//     image: "/images/new/artel.png",
+//     createdAt: new Date("2025-03-02"),
 
-    status: "Active",
-  },
-  {
-    id: 2,
+//     status: "Active",
+//   },
+//   {
+//     id: 2,
 
-    name: "Idea",
-    image: "/images/new/idea.png",
-    createdAt: new Date("2025-03-02"),
+//     name: "Idea",
+//     image: "/images/new/idea.png",
+//     createdAt: new Date("2025-03-02"),
 
-    status: "Active",
-  },
+//     status: "Active",
+//   },
  
 
-   {
-    id: 2,
+//    {
+//     id: 2,
 
-    name: "MediaPark",
-    image: "/images/new/media.png",
-    createdAt: new Date("2025-03-02"),
-    status: "Active",
-  },
+//     name: "MediaPark",
+//     image: "/images/new/media.png",
+//     createdAt: new Date("2025-03-02"),
+//     status: "Active",
+//   },
  
+// ];
 
-  
-];
-
-export default function MerchantsTable() {
-  const [tableData, settableData] = useState(statictableData);
+export default function MerchantsTable({ data,  refetch }: {
+  data: MerchantItemProps[],
+  refetch: () => Promise<void>
+}) {
+  const [tableData, settableData] = useState(data);
 
   const { isOpen, openModal, closeModal } = useModal();
   const handleAdding = () => {
@@ -112,7 +121,7 @@ export default function MerchantsTable() {
 
   const startIndex = (currentPage - 1) * +optionValue;
   const endIndex = startIndex + +optionValue;
-  let currentItems: Order[] = tableData.slice(startIndex, endIndex);
+  let currentItems: MerchantItemProps[] = tableData.slice(startIndex, endIndex);
 
   const goToPreviousPage = () => {
     setCurrentPage((page) => Math.max(page - 1, 1));
@@ -207,7 +216,7 @@ export default function MerchantsTable() {
                       <img
                         width={50}
                         height={50}
-                        src={order.image}
+                        src={order.image ? import.meta.env.VITE_STATIC_PATH +  order.image : "/images/shop.png"}
                         alt={order.name}
                       />
                     </div>
@@ -226,14 +235,15 @@ export default function MerchantsTable() {
                   <Badge
                     size="sm"
                     color={
-                      order.status === "Active"
-                        ? "success"
-                        : order.status === "Pending"
-                        ? "warning"
-                        : "error"
+                      "success"
+                      // order.status === "Active"
+                      //   ? "success"
+                      //   : order.status === "Pending"
+                      //   ? "warning"
+                      //   : "error"
                     }
                   >
-                    {order.status}
+                   Active
                   </Badge>
                 </TableCell>
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 flex gap-2  flex-row items-center">
@@ -305,8 +315,8 @@ export default function MerchantsTable() {
         </div>
         <div>
           Showing {(currentPage - 1) * +optionValue + 1} to{" "}
-          {Math.min(statictableData.length, currentPage * +optionValue)} of{" "}
-          {statictableData.length} entries
+          {Math.min(data.length, currentPage * +optionValue)} of{" "}
+          {data.length} entries
         </div>
       </div>
 

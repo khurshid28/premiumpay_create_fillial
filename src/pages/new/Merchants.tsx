@@ -8,9 +8,12 @@ import { useModal } from "../../hooks/useModal";
 import Label from "../../components/form/Label";
 import Input from "../../components/form/input/InputField";
 import { Modal } from "../../components/ui/modal";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import MerchantsTable from "../../components/tables/new/merchants";
 import FileInput from "../../components/form/input/FileInput";
+import axiosClient from "../../service/axios.service";
+import { useFetchWithLoader } from "../../hooks/useFetchWithLoader";
+import { LoadSpinner } from "../../components/spinner/load-spinner";
 export interface Merchant {
   name?: string;
   image?: string;
@@ -37,6 +40,13 @@ export default function MerchantsPage() {
       console.log("Selected file:", file.name);
     }
   };
+  const fetchMerchants = useCallback(() => {
+    return axiosClient.get("/merchant/all").then((res) => res.data);
+  }, []);
+
+  const { data, isLoading, error, refetch } = useFetchWithLoader({
+    fetcher: fetchMerchants,
+  });
   return (
     <>
       <PageMeta
@@ -44,30 +54,36 @@ export default function MerchantsPage() {
         description="PremiumPay Dashboard"
       />
       <PageBreadcrumb pageTitle="Merchants" />
-   
-       <div className="space-y-6 ">
-       
-       
-         <ComponentCard
-          title="Merchants Table"
-          action={
-            <>
-              <Button
-                size="sm"
-                variant="primary"
-                startIcon={<PlusIcon className="size-5 fill-white" />}
-                onClick={()=>{
-                  setMerchant(emptyMerchant)
-                  openModal()
-                }}
-              >
-                Add Merchant
-              </Button>
-            </>
-          }
-        >
-          <MerchantsTable />
-        </ComponentCard>
+
+      <div className="space-y-6 ">
+        {isLoading && (
+          <div className="min-h-[450px]  flex-col flex justify-center">
+            <LoadSpinner />
+          </div>
+        )}
+
+        {data && (
+          <ComponentCard
+            title="Merchants Table"
+            action={
+              <>
+                <Button
+                  size="sm"
+                  variant="primary"
+                  startIcon={<PlusIcon className="size-5 fill-white" />}
+                  onClick={() => {
+                    setMerchant(emptyMerchant);
+                    openModal();
+                  }}
+                >
+                  Add Merchant
+                </Button>
+              </>
+            }
+          >
+            <MerchantsTable data={data} refetch={refetch} />
+          </ComponentCard>
+        )}
       </div>
       <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] m-4">
         <div className="relative w-full p-4 overflow-y-auto bg-white no-scrollbar rounded-3xl dark:bg-gray-900 lg:p-11">

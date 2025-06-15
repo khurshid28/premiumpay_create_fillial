@@ -18,7 +18,7 @@ type loadProps = {
   message?: string;
   size?: number;
 };
-export function LoadSpinner({ message = "Featching data", size = 100 }: loadProps) {
+export function LoadSpinner({ message = "Fetching data", size = 100 }: loadProps) {
   return (
     <div className="h-full w-full flex flex-col items-center justify-center gap-10 ">
       <div>
